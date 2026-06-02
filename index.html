@@ -6,8 +6,9 @@
   <title>Impostor Game</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <style>
+    /* Theme Definitions */
     :root {
-      --bg-app: #f4f5f6;
+      --bg-app: #f4f6f9;
       --bg-card: #ffffff;
       --bg-secondary: #f8f9fa;
       --border-color: #e9ecef;
@@ -15,40 +16,73 @@
       --text-secondary: #495057;
       --text-muted: #868e96;
       
-      --color-success: #198754;
-      --bg-success-light: #e8f5e9;
-      --color-danger: #dc3545;
-      --bg-danger-light: #fde8e8;
-      --color-info: #0dcaf0;
-      --bg-info-light: #e0f7fa;
-      --color-accent: #6610f2;
-      --bg-accent-light: #f1f0fe;
+      --color-primary: #4361ee;
+      --color-success: #2ec4b6;
+      --bg-success-light: #e6f9f7;
+      --color-danger: #e63946;
+      --bg-danger-light: #fdedee;
+      --color-accent: #7209b7;
+      --bg-accent-light: #f4e6ff;
       
       --radius-sm: 8px;
       --radius-md: 12px;
-      --radius-lg: 18px;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-      --shadow-md: 0 8px 16px rgba(0,0,0,0.04);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 10px 25px rgba(67, 97, 238, 0.06);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     [data-theme="dark"] {
-      --bg-app: #0f1114;
-      --bg-card: #16191f;
-      --bg-secondary: #1f232b;
-      --border-color: #2a2f3a;
+      --bg-app: #0b0f19;
+      --bg-card: #151d30;
+      --bg-secondary: #1d273f;
+      --border-color: #253252;
       --text-primary: #f8f9fa;
-      --text-secondary: #dee2e6;
-      --text-muted: #6c757d;
-      
-      --bg-success-light: rgba(25, 135, 84, 0.15);
-      --bg-danger-light: rgba(220, 53, 69, 0.15);
-      --bg-info-light: rgba(13, 202, 240, 0.15);
-      --bg-accent-light: rgba(102, 16, 242, 0.15);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.2);
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --bg-success-light: rgba(46, 196, 182, 0.15);
+      --bg-danger-light: rgba(230, 57, 70, 0.15);
+      --bg-accent-light: rgba(114, 9, 183, 0.15);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.25);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    [data-theme="neon"] {
+      --bg-app: #0a0512;
+      --bg-card: #140b24;
+      --bg-secondary: #22133b;
+      --border-color: #3b1f66;
+      --text-primary: #00ffff;
+      --text-secondary: #e0aaff;
+      --text-muted: #7b2cbf;
+      --color-primary: #ff007f;
+      --color-success: #39ff14;
+      --bg-success-light: rgba(57, 255, 20, 0.1);
+      --color-danger: #ff3131;
+      --bg-danger-light: rgba(255, 49, 49, 0.1);
+      --color-accent: #9d4edd;
+      --bg-accent-light: rgba(157, 78, 221, 0.15);
+      --shadow-md: 0 0 20px rgba(255, 0, 127, 0.2);
+    }
+
+    [data-theme="sunset"] {
+      --bg-app: #fff1e6;
+      --bg-card: #ffffff;
+      --bg-secondary: #fde2e4;
+      --border-color: #ffcad4;
+      --text-primary: #4a1525;
+      --text-secondary: #6b2d5c;
+      --text-muted: #b5779d;
+      --color-primary: #ff7096;
+      --color-success: #52b788;
+      --bg-success-light: #d8f3dc;
+      --color-danger: #e05780;
+      --bg-danger-light: #ffccd5;
+      --color-accent: #f7b267;
+      --bg-accent-light: #fff3b0;
+      --shadow-md: 0 10px 25px rgba(224, 87, 128, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
     body {
       background-color: var(--bg-app);
@@ -64,152 +98,202 @@
     .container {
       width: 100%;
       max-width: 480px;
-      margin-top: 1rem;
     }
 
-    /* System Header & Theme Toggles */
+    /* Interactive Header */
     .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
+      padding: 4px 0;
     }
     .app-title {
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 24px;
+      font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      letter-spacing: -0.5px;
     }
-    .theme-toggle-btn {
+    
+    .theme-select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       background: var(--bg-card);
+      padding: 6px 12px;
+      border-radius: 30px;
       border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
     }
-    .theme-toggle-btn:hover { transform: scale(1.05); }
+    .theme-select-wrapper i { font-size: 16px; color: var(--color-primary); }
+    .theme-dropdown {
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
 
-    /* Screen Architecture & Animations */
+    /* Screen Navigation and Transitions */
     .screen {
       display: none;
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(16px) scale(0.98);
       transition: var(--transition);
     }
     .screen.active {
       display: block;
-      animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation: smoothReveal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes smoothReveal {
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Beautiful Cards */
+    /* Custom Cards */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 1.25rem;
+      padding: 1.5rem;
       margin-bottom: 16px;
       box-shadow: var(--shadow-md);
+      transition: var(--transition);
     }
+    .card:hover { transform: translateY(-2px); }
 
-    h2 { font-size: 18px; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); }
-    h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-secondary); }
-    p { color: var(--text-secondary); font-size: 14px; line-height: 1.5; margin-bottom: 0.75rem; }
+    h2 { font-size: 18px; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; letter-spacing: -0.3px; }
+    h3 { font-size: 14px; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+    p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 0.75rem; }
     .muted { color: var(--text-muted); font-size: 13px; }
 
-    /* Custom Switch Component */
-    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; }
-    .sw { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+    /* Custom Switch Toggles */
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
+    .toggle-info { display: flex; flex-direction: column; gap: 2px; }
+    .sw { position: relative; width: 48px; height: 26px; flex-shrink: 0; }
     .sw input { opacity: 0; width: 0; height: 0; }
-    .sl { position: absolute; inset: 0; background: var(--border-color); border-radius: 26px; cursor: pointer; transition: background .2s; }
-    .sl:before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .sw input:checked + .sl { background: var(--color-success); }
-    .sw input:checked + .sl:before { transform: translateX(20px); }
+    .sl { position: absolute; inset: 0; background: var(--border-color); border-radius: 26px; cursor: pointer; transition: background .25s; }
+    .sl:before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform .25s; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .sw input:checked + .sl { background: var(--color-primary); }
+    .sw input:checked + .sl:before { transform: translateX(22px); }
 
-    /* Avatars and Lists */
+    /* Impostor Percentage Probability Grid */
+    .prob-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    .prob-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .prob-label { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .prob-controls { display: flex; align-items: center; gap: 12px; }
+    .prob-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .prob-btn:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+    .prob-value { font-size: 14px; font-weight: 700; min-width: 40px; text-align: center; }
+
+    /* Layout Rows & Profiles */
     .player-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
     .player-row:last-child { border-bottom: none; }
-    .avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0; transition: var(--transition); }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; box-shadow: var(--shadow-sm); }
     
-    /* Modern UI Elements */
-    .cat-tag { display: inline-flex; align-items: center; font-size: 12px; padding: 4px 12px; border-radius: var(--radius-sm); background: var(--bg-info-light); color: #007a99; font-weight: 600; margin-bottom: 12px; }
-    [data-theme="dark"] .cat-tag { color: var(--color-info); }
+    /* Elegant Tags and Presentation Cards */
+    .cat-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 6px 14px; border-radius: 30px; background: var(--bg-accent-light); color: var(--color-accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .big-role { font-size: 26px; font-weight: 800; margin: 1.25rem 0 0.5rem; text-align: center; letter-spacing: -0.5px; }
+    .word-box { font-size: 32px; font-weight: 800; text-align: center; padding: 1.75rem; background: var(--bg-secondary); border: 2px dashed var(--border-color); border-radius: var(--radius-md); margin: 1.25rem 0; color: var(--color-primary); letter-spacing: -0.5px; }
     
-    .big-role { font-size: 24px; font-weight: 700; margin: 1rem 0 0.5rem; text-align: center; }
-    .word-box { font-size: 28px; font-weight: 700; text-align: center; padding: 1.5rem; background: var(--bg-secondary); border: 1px dashed var(--border-color); border-radius: var(--radius-md); margin: 1.25rem 0; letter-spacing: -0.5px; }
+    .hint-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); text-align: center; margin-bottom: 6px; font-weight: 700; }
+    .hint-box { font-size: 22px; font-weight: 700; text-align: center; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-md); margin: 0.5rem 0; color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
     
-    .hint-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); text-align: center; margin-bottom: 6px; font-weight: 600; }
-    .hint-box { font-size: 20px; font-weight: 600; text-align: center; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); margin: 0.5rem 0; color: var(--text-primary); border: 1px solid var(--border-color); }
-    
-    .starter-banner { display: flex; align-items: center; gap: 10px; background: var(--bg-accent-light); color: var(--color-accent); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-weight: 600; font-size: 14px; border: 1px solid rgba(102, 16, 242, 0.1); }
+    .starter-banner { display: flex; align-items: center; gap: 10px; background: var(--bg-success-light); color: var(--color-success); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; font-weight: 700; font-size: 14px; border: 1px solid var(--border-color); }
 
-    /* Modern Buttons & Inputs */
+    /* Modern Buttons & Interactive Fields */
     button {
       background: var(--text-primary);
       color: var(--bg-card);
       border: none;
       border-radius: var(--radius-md);
-      padding: 12px 20px;
+      padding: 12px 22px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
     }
-    button:hover { opacity: 0.9; transform: translateY(-1px); }
+    button:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: var(--shadow-sm); }
     button:active { transform: translateY(0); }
     
     .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); }
     .btn-secondary:hover { background: var(--border-color); }
+    .btn-wide { width: 100%; padding: 16px; font-size: 16px; margin-top: 0.5rem; }
 
-    .btn-wide { width: 100%; padding: 14px; font-size: 16px; margin: 1rem 0 0; }
+    .guess-row { display: flex; gap: 10px; margin-top: 14px; }
+    input[type="text"] { flex: 1; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; color: var(--text-primary); font-size: 15px; font-weight: 600; transition: var(--transition); }
+    input[type="text"]:focus { outline: none; border-color: var(--color-primary); background: var(--bg-card); }
 
-    .guess-row { display: flex; gap: 8px; margin-top: 12px; }
-    input[type="text"] { flex: 1; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px 16px; color: var(--text-primary); font-size: 14px; transition: var(--transition); }
-    input[type="text"]:focus { outline: none; border-color: var(--text-primary); }
-
-    /* Results Table */
-    .score-tbl { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 4px; }
-    .score-tbl td { padding: 12px 6px; border-bottom: 1px solid var(--border-color); }
+    /* Scoreboard Element Formatting */
+    .score-tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+    .score-tbl td { padding: 14px 8px; border-bottom: 1px solid var(--border-color); }
     .score-tbl tr:last-child td { border-bottom: none; }
-    .score-tbl td:last-child { text-align: right; font-weight: 600; }
-    .badge { font-size: 11px; padding: 3px 8px; border-radius: var(--radius-sm); font-weight: 600; margin-left: 8px; text-transform: uppercase; }
+    .score-tbl td:last-child { text-align: right; font-weight: 700; color: var(--color-primary); }
+    .badge { font-size: 11px; padding: 4px 10px; border-radius: 30px; font-weight: 700; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
     .badge-danger { background: var(--bg-danger-light); color: var(--color-danger); }
 
     .text-center { text-align: center; }
     .mx-auto { margin-left: auto; margin-right: auto; }
   </style>
 </head>
-<body data-theme="light">
+<body data-theme="sunset">
 
 <div class="container">
   <header class="app-header">
-    <div class="app-title"><i class="ti ti-spy text-accent"></i> Impostor Room</div>
-    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
-      <i class="ti ti-sun" id="theme-icon"></i>
-    </button>
+    <div class="app-title"><i class="ti ti-mask"></i> Impostor Room</div>
+    <div class="theme-select-wrapper">
+      <i class="ti ti-palette"></i>
+      <select class="theme-dropdown" onchange="changeTheme(this.value)" id="theme-selector">
+        <option value="sunset">Sunset Glow</option>
+        <option value="light">Crisp Clean</option>
+        <option value="dark">Cyber Space</option>
+        <option value="neon">Neon Night</option>
+      </select>
+    </div>
   </header>
 
   <main id="s-lobby" class="screen active">
     <div class="card">
+      <h2><i class="ti ti-settings" style="color:var(--color-primary)"></i> Room Settings</h2>
       <div class="toggle-row">
-        <div>
-          <div style="font-size:14px;font-weight:600">Impostor Clue-Engine</div>
-          <div class="muted">Equip the impostor with ultra-broad structural anchors</div>
+        <div class="toggle-info">
+          <div style="font-size:15px; font-weight:700">Impostor Hints</div>
+          <div class="muted">Give Impostors a very broad hint to help them blend in</div>
         </div>
         <label class="sw">
           <input type="checkbox" id="hint-toggle" checked />
@@ -217,32 +301,39 @@
         </label>
       </div>
     </div>
+
     <div class="card">
-      <h2>Active Group</h2>
+      <h2><i class="ti ti-percentage" style="color:var(--color-accent)"></i> Impostor Count Probability</h2>
+      <p class="muted" style="margin-bottom: 12px;">Set the weight chances for how many Impostors will be randomly selected (0 to 6 imps).</p>
+      <div class="prob-grid" id="prob-container"></div>
+    </div>
+
+    <div class="card">
+      <h2><i class="ti ti-users" style="color:var(--color-success)"></i> Group Players</h2>
       <div id="lobby-players"></div>
     </div>
-    <button onclick="startGame()" class="btn-wide" style="background:var(--color-accent); color:#fff">Initialize Game Session <i class="ti ti-arrow-right"></i></button>
+    <button onclick="startGame()" class="btn-wide" style="background:var(--color-primary); color:#fff">Start Match Session <i class="ti ti-arrow-right"></i></button>
   </main>
 
   <section id="s-pass" class="screen">
-    <div class="card text-center" style="padding: 3rem 1.5rem;">
-      <i class="ti ti-device-mobile" style="font-size:54px; color:var(--text-muted); display:block; margin-bottom:1.5rem"></i>
-      <h2 id="pass-name" style="font-size:22px; margin-bottom:0.5rem"></h2>
-      <p>Hand over the device immediately. Complete privacy is required to look at your role data.</p>
-      <button onclick="revealRole()" class="btn-wide">Access Role Clearance</button>
+    <div class="card text-center" style="padding: 3.5rem 1.5rem;">
+      <i class="ti ti-device-mobile-rotated" style="font-size:64px; color:var(--text-muted); display:block; margin-bottom:1.5rem"></i>
+      <h2 id="pass-name" style="font-size:24px; margin-bottom:0.5rem; justify-content:center"></h2>
+      <p>Pass the device to this person. Keep the screen hidden from everyone else!</p>
+      <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:white">View Secret Secret Role</button>
     </div>
   </section>
 
   <section id="s-role" class="screen">
-    <div class="card" style="padding: 2rem 1.25rem;">
+    <div class="card" style="padding: 2rem 1.5rem;">
       <div id="r-avatar" class="avatar mx-auto" style="width:64px; height:64px; font-size:24px; margin-bottom:1.25rem"></div>
-      <div id="r-name" class="text-center muted" style="font-weight:600; text-transform:uppercase; letter-spacing:0.5px"></div>
+      <div id="r-name" class="text-center muted" style="font-weight:700; text-transform:uppercase; letter-spacing:0.5px"></div>
       <div id="r-label" class="big-role"></div>
       <div class="text-center"><span class="cat-tag" id="r-sub"></span></div>
       <div id="r-word"></div>
       <div id="r-hint"></div>
-      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Secure Data & Pass Phone</button>
-      <button id="r-start" onclick="beginDiscussion()" class="btn-wide" style="display:none; background:var(--color-success); color:#fff">All Clear — Begin Rounds</button>
+      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Done, Hide Screen</button>
+      <button id="r-start" onclick="beginDiscussion()" class="btn-wide" style="display:none; background:var(--color-success); color:#fff">Everyone Ready - Start Discussion</button>
     </div>
   </section>
 
@@ -250,45 +341,45 @@
     <div id="starter-announcement"></div>
     <div class="card">
       <div class="cat-tag" id="d-cat-tag"></div>
-      <p style="margin:0; font-size:14px">Share single-word descriptions carefully without giving away the exact system item. The anomaly is lurking directly inside the network thread.</p>
+      <p style="margin:0; font-size:14px">Take turns giving a single word clue. Crewmates want to find the Impostors. Impostors want to blend in and guess the Secret Word.</p>
     </div>
     <div class="card">
-      <h2>Network Map</h2>
+      <h2><i class="ti ti-users" style="color:var(--color-primary)"></i> Players Alive</h2>
       <div id="d-players"></div>
     </div>
     <div class="card">
-      <h2>Impostor Decryption Box</h2>
-      <p>If you are the impostor, input your final target assessment query here.</p>
+      <h2><i class="ti ti-key" style="color:var(--color-accent)"></i> Impostor Guess Box</h2>
+      <p class="muted">If you are the Impostor and know the word, guess it below to secure an immediate win!</p>
       <div class="guess-row">
-        <input type="text" id="guess-in" placeholder="Input target verification item..." />
-        <button onclick="checkGuess()" style="background:var(--text-primary)">Query</button>
+        <input type="text" id="guess-in" placeholder="Type secret word guess..." />
+        <button onclick="checkGuess()" style="background:var(--text-primary)">Submit Guess</button>
       </div>
     </div>
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:4px">
-      <button onclick="revealEnd()" class="btn-secondary"><i class="ti ti-gavel"></i> Vote Out Anomaly</button>
-      <button onclick="newGame()" class="btn-secondary"><i class="ti ti-refresh"></i> Reset Matrix</button>
+      <button onclick="revealEnd()" class="btn-secondary"><i class="ti ti-gavel"></i> Vote Out Impostor</button>
+      <button onclick="newGame()" class="btn-secondary"><i class="ti ti-refresh"></i> Reset Round</button>
     </div>
   </section>
 
   <section id="s-result" class="screen">
     <div id="res-banner" class="card text-center" style="padding:1.75rem"></div>
     <div class="card">
-      <h3>Identified Anomaly</h3>
-      <div id="res-impostor" style="display:flex; align-items:center; gap:14px; padding:4px 0"></div>
+      <h3>The Impostors This Round</h3>
+      <div id="res-impostor-list" style="display:flex; flex-direction:column; gap:12px; padding:4px 0"></div>
     </div>
     <div class="card">
-      <h3>Target Word Configuration</h3>
+      <h3>Round Configuration</h3>
       <div class="cat-tag" id="res-cat-tag"></div>
       <div class="word-box" id="res-word"></div>
       <div id="res-hint"></div>
     </div>
     <div class="card">
-      <h2>Session Standings</h2>
+      <h2>Current Standings Leaderboard</h2>
       <table class="score-tbl" id="res-scores"></table>
     </div>
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:4px">
-      <button onclick="playAgain()"><i class="ti ti-player-play"></i> Re-Run Core</button>
-      <button onclick="newGame()" class="btn-secondary"><i class="ti ti-refresh"></i> Fresh Session</button>
+      <button onclick="playAgain()" style="background:var(--color-primary); color:white"><i class="ti ti-player-play"></i> Next Round</button>
+      <button onclick="newGame()" class="btn-secondary"><i class="ti ti-refresh"></i> Full Reset</button>
     </div>
   </section>
 </div>
@@ -296,15 +387,15 @@
 <script>
 const PLAYERS = ["Noah", "Nathan", "Nolan", "Kaylin", "Kayla", "Kha"];
 const COLORS = [
-  {bg:'#f1f0fe', c:'#6610f2'},
-  {bg:'#e8f5e9', c:'#198754'},
+  {bg:'var(--bg-accent-light)', c:'var(--color-accent)'},
+  {bg:'var(--bg-success-light)', c:'var(--color-success)'},
   {bg:'#fff3cd', c:'#856404'},
-  {bg:'#fde8e8', c:'#dc3545'},
+  {bg:'var(--bg-danger-light)', c:'var(--color-danger)'},
   {bg:'#e0f7fa', c:'#007a99'},
   {bg:'#e2e3e5', c:'#383d41'}
 ];
 
-// Fully revised structural, ultra-broad single-word hints that completely prevent giveaway leaks
+// Replaced all structural/network anomaly tags with classic "Hint" configuration definitions
 const WORD_DATA = {
   "Sports":[
     ["Soccer","Field"],["Basketball","Court"],["Baseball","Team"],["American Football","Contact"],["Cricket","Match"],
@@ -511,18 +602,55 @@ CATEGORY_NAMES.forEach(cat => {
   pointers[cat] = 0;
 });
 
-let state = {scores: {}, hintsOn: true, entry: null, impostorIdx: 0, currentIdx: 0, starterName: ""};
+// Customizable state configs featuring Impostor Chance Configuration Weights
+let state = {
+  scores: {}, 
+  hintsOn: true, 
+  entry: null, 
+  impostorIndices: [], 
+  currentIdx: 0, 
+  starterName: "",
+  probabilities: { 0: 0, 1: 70, 2: 20, 3: 10, 4: 0, 5: 0, 6: 0 }
+};
 
-function toggleTheme() {
-  const body = document.body;
-  const icon = document.getElementById('theme-icon');
-  if(body.getAttribute('data-theme') === 'light') {
-    body.setAttribute('data-theme', 'dark');
-    icon.className = 'ti ti-moon';
-  } else {
-    body.setAttribute('data-theme', 'light');
-    icon.className = 'ti ti-sun';
-  }
+function changeTheme(themeName) {
+  document.body.setAttribute('data-theme', themeName);
+}
+
+function renderProbabilityControls() {
+  const container = document.getElementById('prob-container');
+  container.innerHTML = Object.keys(state.probabilities).map(num => `
+    <div class="prob-row">
+      <div class="prob-label"><i class="ti ti-mask"></i> ${num} ${num == 1 ? 'Impostor' : 'Impostors'}</div>
+      <div class="prob-controls">
+        <button type="button" class="prob-btn" onclick="adjustProb(${num}, -5)">-</button>
+        <span class="prob-value" id="prob-val-${num}">${state.probabilities[num]}%</span>
+        <button type="button" class="prob-btn" onclick="adjustProb(${num}, 5)">+</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function adjustProb(num, delta) {
+  let newVal = state.probabilities[num] + delta;
+  if (newVal < 0) newVal = 0;
+  if (newVal > 100) newVal = 100;
+  state.probabilities[num] = newVal;
+  document.getElementById(`prob-val-${num}`).textContent = `${newVal}%`;
+}
+
+function rollImpostorCount() {
+  let pool = [];
+  Object.keys(state.probabilities).forEach(num => {
+    let count = parseInt(num);
+    let weight = state.probabilities[num];
+    for(let i = 0; i < weight; i++) {
+      pool.push(count);
+    }
+  });
+  if (pool.length === 0) return 1; // Safeguard fallback if all weights are zeroed
+  let rolledCount = pool[Math.floor(Math.random() * pool.length)];
+  return Math.min(rolledCount, PLAYERS.length); // Ensure we never exceed player bounds
 }
 
 function pickEntry() {
@@ -544,8 +672,9 @@ function initLobby() {
   document.getElementById('lobby-players').innerHTML = PLAYERS.map((p, i) => `
     <div class="player-row">
       <div class="avatar" style="background:${COLORS[i].bg}; color:${COLORS[i].c}">${p[0]}</div>
-      <span style="font-size:14px; font-weight:600">${p}</span>
+      <span style="font-size:14px; font-weight:700">${p}</span>
     </div>`).join('');
+  renderProbabilityControls();
 }
 
 function showScreen(id){
@@ -564,25 +693,33 @@ function newGame(){
 
 function setupGameCore() {
   state.entry = pickEntry();
-  state.impostorIdx = Math.floor(Math.random() * PLAYERS.length);
   state.currentIdx = 0;
   
+  // Dynamic calculation determining active impostor index allocations
+  let impostorCount = rollImpostorCount();
+  state.impostorIndices = [];
+  
+  let playerIndices = PLAYERS.map((_, i) => i);
+  playerIndices.sort(() => Math.random() - 0.5);
+  state.impostorIndices = playerIndices.slice(0, impostorCount);
+  
   // Randomly select a crewmate to be the starter player for clues
-  let validStarters = PLAYERS.filter((_, idx) => idx !== state.impostorIdx);
+  let validStarters = PLAYERS.filter((_, idx) => !state.impostorIndices.includes(idx));
+  if (validStarters.length === 0) validStarters = [...PLAYERS]; // Fallback if 100% impostor setup rolled
   state.starterName = validStarters[Math.floor(Math.random() * validStarters.length)];
   
   showPass();
 }
 
 function showPass(){
-  document.getElementById('pass-name').textContent = `${PLAYERS[state.currentIdx]}, verify status`;
+  document.getElementById('pass-name').textContent = `Pass phone to ${PLAYERS[state.currentIdx]}`;
   showScreen('s-pass');
 }
 
 function revealRole(){
   const idx = state.currentIdx;
   const p = PLAYERS[idx];
-  const isImp = idx === state.impostorIdx;
+  const isImp = state.impostorIndices.includes(idx);
   const col = COLORS[idx];
   
   const av = document.getElementById('r-avatar');
@@ -597,15 +734,15 @@ function revealRole(){
   sub.textContent = `Category: ${state.entry.category}`;
   
   if(isImp){
-    lbl.textContent = 'Anomaly Detected (Impostor)'; lbl.style.color = 'var(--color-danger)';
-    wordEl.innerHTML = `<div style="background:var(--bg-danger-light); border-radius:var(--radius-md); padding:1.25rem; font-size:14px; color:var(--color-danger); border: 1px solid rgba(220,53,69,0.1); line-height:1.5" class="text-center"><i class="ti ti-eye-off"></i> Word vector unreadable. Formulate generic responses and trace network leaks!</div>`;
+    lbl.textContent = 'You are the Impostor!'; lbl.style.color = 'var(--color-danger)';
+    wordEl.innerHTML = `<div style="background:var(--bg-danger-light); border-radius:var(--radius-md); padding:1.25rem; font-size:14px; color:var(--color-danger); border: 1px solid var(--border-color); line-height:1.6" class="text-center"><i class="ti ti-eye-off"></i> You do not know the Secret Word. Blend in and listen closely to clues!</div>`;
     hintEl.innerHTML = state.hintsOn
-      ? `<div class="hint-label">Decrypted Single-Word Anchor</div><div class="hint-box">${state.entry.hint}</div>`
-      : `<div class="hint-box" style="font-size:14px; color:var(--text-muted)"><i class="ti ti-eye-off"></i> Clue-engine offline for this node.</div>`;
+      ? `<div class="hint-label">Your Secret Hint is</div><div class="hint-box">${state.entry.hint}</div>`
+      : `<div class="hint-box" style="font-size:14px; color:var(--text-muted)"><i class="ti ti-eye-off"></i> Hints are turned off this game.</div>`;
   } else {
-    lbl.textContent = 'Network Secure (Crewmate)'; lbl.style.color = 'var(--color-success)';
+    lbl.textContent = 'You are a Crewmate'; lbl.style.color = 'var(--color-success)';
     wordEl.innerHTML = `<div class="word-box">${state.entry.word}</div>`;
-    hintEl.innerHTML = `<div class="muted text-center" style="font-weight:500"><i class="ti ti-info-circle"></i> Describe this item broadly. Do not trigger explicit terms directly!</div>`;
+    hintEl.innerHTML = `<div class="muted text-center" style="font-weight:600"><i class="ti ti-info-circle"></i> Describe this secret word broadly without giving it away!</div>`;
   }
   
   const isLast = idx === PLAYERS.length - 1;
@@ -619,16 +756,18 @@ function nextPlayer(){ state.currentIdx++; showPass(); }
 function beginDiscussion(){
   document.getElementById('starter-announcement').innerHTML = `
     <div class="starter-banner">
-      <i class="ti ti-player-play-filled"></i>
-      <span>First clue responsibility assigned to: ${state.starterName}</span>
+      <i class="ti ti-message-square-text"></i>
+      <span>First clue goes to: ${state.starterName}</span>
     </div>`;
     
   document.getElementById('d-cat-tag').textContent = state.entry.category;
-  document.getElementById('d-players').innerHTML = PLAYERS.map((p, i) => `
+  document.getElementById('d-players').innerHTML = PLAYERS.map((p, i) => {
+    return `
     <div class="player-row">
       <div class="avatar" style="background:${COLORS[i].bg}; color:${COLORS[i].c}">${p[0]}</div>
-      <span style="font-size:14px; font-weight:600">${p}</span>
-    </div>`).join('');
+      <span style="font-size:14px; font-weight:700">${p}</span>
+    </div>`;
+  }).join('');
   document.getElementById('guess-in').value = '';
   showScreen('s-discuss');
 }
@@ -637,16 +776,25 @@ function checkGuess(){
   const g = document.getElementById('guess-in').value.trim();
   if(!g) return;
   if(g.toLowerCase() === state.entry.word.toLowerCase()){
-    state.scores[PLAYERS[state.impostorIdx]] = (state.scores[PLAYERS[state.impostorIdx]] || 0) + 2;
+    // Impostors guessed the word correctly! Award points to all impostors
+    state.impostorIndices.forEach(idx => {
+      state.scores[PLAYERS[idx]] = (state.scores[PLAYERS[idx]] || 0) + 2;
+    });
     showResult(true);
   } else {
-    PLAYERS.forEach((p, i) => { if(i !== state.impostorIdx) state.scores[p] = (state.scores[p] || 0) + 1; });
+    // False guess, crewmates win! Award points to all crewmates
+    PLAYERS.forEach((p, i) => { 
+      if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
+    });
     showResult(false);
   }
 }
 
 function revealEnd(){
-  PLAYERS.forEach((p, i) => { if(i !== state.impostorIdx) state.scores[p] = (state.scores[p] || 0) + 1; });
+  // Regular vote phase finished. Award points to crewmates
+  PLAYERS.forEach((p, i) => { 
+    if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
+  });
   showResult(false);
 }
 
@@ -654,32 +802,42 @@ function showResult(impostorWon){
   const banner = document.getElementById('res-banner');
   if(impostorWon){
     banner.style.background = 'var(--bg-danger-light)';
-    banner.style.border = '1px solid rgba(220,53,69,0.1)';
-    banner.innerHTML = `<div style="font-size:20px; font-weight:700; color:var(--color-danger)"><i class="ti ti-skull"></i> Anomaly Victory</div><p style="color:var(--color-danger); margin-top:6px; font-weight:500">The code vector was parsed accurately. (+2 pts to Anomaly)</p>`;
+    banner.style.border = '1px solid var(--border-color)';
+    banner.innerHTML = `<div style="font-size:22px; font-weight:800; color:var(--color-danger)"><i class="ti ti-trophy"></i> Impostor Victory!</div><p style="color:var(--color-danger); margin-top:6px; font-weight:600">The Impostor figured out the secret word! (+2 pts to Impostors)</p>`;
   } else {
     banner.style.background = 'var(--bg-success-light)';
-    banner.style.border = '1px solid rgba(25,135,84,0.1)';
-    banner.innerHTML = `<div style="font-size:20px; font-weight:700; color:var(--color-success)"><i class="ti ti-shield-check"></i> Firewall Intact</div><p style="color:var(--color-success); margin-top:6px; font-weight:500">The node anomaly was purged successfully. (+1 pt to Crewmates)</p>`;
+    banner.style.border = '1px solid var(--border-color)';
+    banner.innerHTML = `<div style="font-size:22px; font-weight:800; color:var(--color-success)"><i class="ti ti-shield-check"></i> Crewmates Win!</div><p style="color:var(--color-success); margin-top:6px; font-weight:600">The Impostor was successfully caught or failed their guess! (+1 pt to Crewmates)</p>`;
   }
   
-  const imp = PLAYERS[state.impostorIdx];
-  const ic = COLORS[state.impostorIdx];
-  document.getElementById('res-impostor').innerHTML = `
-    <div class="avatar" style="background:${ic.bg}; color:${ic.c}">${imp[0]}</div>
-    <div><div style="font-size:15px; font-weight:600">${imp}</div><div class="muted">was the core network anomaly</div></div>`;
+  // Render the list of all active impostors
+  const listContainer = document.getElementById('res-impostor-list');
+  if (state.impostorIndices.length === 0) {
+    listContainer.innerHTML = `<div class="muted">There were no Impostors this round!</div>`;
+  } else {
+    listContainer.innerHTML = state.impostorIndices.map(idx => {
+      const imp = PLAYERS[idx];
+      const ic = COLORS[idx];
+      return `
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div class="avatar" style="background:${ic.bg}; color:${ic.c}">${imp[0]}</div>
+          <div><div style="font-size:15px; font-weight:700">${imp}</div></div>
+        </div>`;
+    }).join('');
+  }
   
   document.getElementById('res-cat-tag').textContent = state.entry.category;
   document.getElementById('res-word').textContent = state.entry.word;
   
   document.getElementById('res-hint').innerHTML = state.hintsOn
-    ? `<div class="hint-label">Assigned structural anchor was</div><div class="hint-box">${state.entry.hint}</div>`
-    : `<div class="hint-label" style="margin-top:8px">Clue-engine was offline this round</div>`;
+    ? `<div class="hint-label">The assigned hint was</div><div class="hint-box">${state.entry.hint}</div>`
+    : `<div class="hint-label" style="margin-top:8px">Hints were disabled this round</div>`;
   
   const sorted = [...PLAYERS].sort((a, b) => (state.scores[b] || 0) - (state.scores[a] || 0));
   document.getElementById('res-scores').innerHTML = sorted.map((p, rank) => {
-    const isImp = p === imp;
+    const isImp = state.impostorIndices.includes(PLAYERS.indexOf(p));
     return `<tr>
-      <td>${rank === 0 ? '<i class="ti ti-crown" style="color:#ba7517; font-size:14px"></i> ' : ''}<span style="font-weight:500">${p}</span>${isImp ? `<span class="badge badge-danger">Anomaly</span>` : ''}</td>
+      <td>${rank === 0 ? '<i class="ti ti-crown" style="color:#d4af37; font-size:15px"></i> ' : ''}<span style="font-weight:600">${p}</span>${isImp ? `<span class="badge badge-danger">Impostor</span>` : ''}</td>
       <td>${state.scores[p] || 0} PTS</td>
     </tr>`;
   }).join('');
@@ -687,11 +845,7 @@ function showResult(impostorWon){
 }
 
 function playAgain(){
-  state.impostorIdx = Math.floor(Math.random() * PLAYERS.length);
-  state.currentIdx = 0;
-  let validStarters = PLAYERS.filter((_, idx) => idx !== state.impostorIdx);
-  state.starterName = validStarters[Math.floor(Math.random() * validStarters.length)];
-  showPass();
+  setupGameCore();
 }
 
 initLobby();
