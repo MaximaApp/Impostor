@@ -1,8 +1,8 @@
-# 🕵️‍♂️ Impostor Room
+# 🕵️‍♂️ Impostor - Party Game
 
 A modern, mobile-optimized social deduction party game built to run entirely in the browser. Gather your friends around a single device, select a category, and try to hunt down the network anomaly (Impostor) before they decipher your secret word!
 
-The twist? The Impostor is given an **ultra-broad, single-word structural anchor** (e.g., "Field" for *Soccer*, or "Franchise" for *Chick-fil-A*) to prevent instant giveaways while forcing them to blend in using generic logic.
+The twist? The Impostor is given an **ultra-broad, single-word structural anchor** (also known as a Hint) to prevent instant giveaways while forcing them to blend in utilizing generic logic.
 
 ---
 
