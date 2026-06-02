@@ -250,7 +250,7 @@
 
 <div class="container">
   <header class="app-header">
-    <div class="app-title" onclick="backToLobby()" style="cursor:pointer"><i class="ti ti-mask"></i> Impostor Room</div>
+    <div class="app-title" onclick="backToLobby()" style="cursor:pointer"><i class="ti ti-mask"></i> Impostor</div>
     <button class="settings-trigger" id="gear-btn" onclick="openSettings()" aria-label="Open settings room configuration">
       <i class="ti ti-settings"></i>
     </button>
@@ -275,9 +275,9 @@
         <div class="select-wrapper">
           <i class="ti ti-brush"></i>
           <select class="theme-dropdown" onchange="updateThemePreference(this.value)" id="theme-selector">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
             <option value="sunset">Sunset Glow</option>
-            <option value="light">Simple Light</option>
-            <option value="dark">Simple Dark</option>
             <option value="neon">Neon Night</option>
           </select>
         </div>
@@ -288,7 +288,7 @@
       <h2><i class="ti ti-wand" style="color:var(--color-success)"></i> Hint Matrix Rules</h2>
       <div class="toggle-row">
         <div class="toggle-info">
-          <div style="font-size:15px; font-weight:700">Impostor Clue Hints</div>
+          <div style="font-size:15px; font-weight:700">Impostor Hints</div>
           <div class="muted">Equip Impostors with a broad word category helper</div>
         </div>
         <label class="sw">
@@ -299,7 +299,7 @@
     </div>
 
     <div class="card">
-      <h2><i class="ti ti-scale" style="color:var(--color-accent)"></i> Auto-Balancing Weights (Total: 100%)</h2>
+      <h2><i class="ti ti-scale" style="color:var(--color-accent)"></i> Auto-Balancing Weights</h2>
       <p class="muted" style="margin-bottom: 12px;">Dials recalculate automatically across indices to guarantee mathematical percentage distribution.</p>
       <div class="prob-grid" id="prob-container"></div>
     </div>
@@ -312,7 +312,7 @@
       <i class="ti ti-device-mobile-rotated" style="font-size:64px; color:var(--text-muted); display:block; margin-bottom:1.5rem"></i>
       <h2 id="pass-name" style="font-size:24px; margin-bottom:0.5rem; justify-content:center"></h2>
       <p>Pass the device to this person. Keep the screen hidden from everyone else!</p>
-      <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:white">View Secret Secret Role</button>
+      <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:white">View Role</button>
     </div>
   </section>
 
@@ -324,7 +324,7 @@
       <div class="text-center"><span class="cat-tag" id="r-sub"></span></div>
       <div id="r-word"></div>
       <div id="r-hint"></div>
-      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Done, Hide Screen</button>
+      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Pass the Phone</button>
       <button id="r-start" onclick="beginDiscussion()" class="btn-wide" style="display:none; background:var(--color-success); color:#fff">Everyone Ready - Start Discussion</button>
     </div>
   </section>
@@ -333,7 +333,7 @@
     <div id="starter-announcement"></div>
     <div class="card">
       <div class="cat-tag" id="d-cat-tag"></div>
-      <p style="margin:0; font-size:14px">Take turns giving a single word clue. Crewmates want to find the Impostors. Impostors want to blend in and guess the Secret Word.</p>
+      <p style="margin:0; font-size:14px">Take turns giving a single word clue. Crewmates want to find the Impostors. Impostors want to blend in and guess the secret word.</p>
     </div>
     <div class="card">
       <h2><i class="ti ti-users" style="color:var(--color-primary)"></i> Players Alive</h2>
@@ -377,7 +377,7 @@
 </div>
 
 <script>
-const PLAYERS = ["Noah", "Nathan", "Nolan", "Kaylin", "Kayla", "Kha"];
+const PLAYERS = ["Nathan", "Noah", "Nolan", "Kaylin", "Kayla", "Kha"];
 const COLORS = [
   {bg:'var(--bg-accent-light)', c:'var(--color-accent)'},
   {bg:'var(--bg-success-light)', c:'var(--color-success)'},
