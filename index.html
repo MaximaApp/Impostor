@@ -393,7 +393,7 @@
     <div class="card text-center" style="padding: 3.5rem 1.5rem;">
       <i class="ti ti-device-mobile-rotated" style="font-size:64px; color:var(--text-muted); display:block; margin-bottom:1.5rem"></i>
       <h2 id="pass-name" style="font-size:24px; margin-bottom:0.5rem; justify-content:center"></h2>
-      <p>Pass the device to this person. Keep the screen hidden from everyone else!</p>
+      <p>Pass the device to this person. Keep the screen hidden from everyone else.</p>
       <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:var(--bg-card)">View Role</button>
     </div>
   </section>
@@ -926,7 +926,7 @@ function revealRole(){
     lbl.textContent = 'Impostor'; lbl.style.color = 'var(--color-danger)';
     wordEl.innerHTML = `<div style="background:var(--bg-danger-light); border-radius:var(--radius-md); padding:1.25rem; font-size:14px; color:var(--color-danger); border: 1px solid var(--border-color); line-height:1.6" class="text-center"><i class="ti ti-eye-off"></i> You do not know the Secret Word. Blend in and listen closely to clues!</div>`;
     hintEl.innerHTML = state.hintsOn
-      ? `<div class="hint-label">Your Secret Hint is</div><div class="hint-box">${state.entry.hint}</div>`
+      ? `<div class="hint-label">Your Hint is</div><div class="hint-box">${state.entry.hint}</div>`
       : `<div class="hint-box" style="font-size:14px; color:var(--text-muted)"><i class="ti ti-eye-off"></i> Hints are turned off this game.</div>`;
   } else {
     lbl.textContent = 'Crewmate'; lbl.style.color = 'var(--color-success)';
@@ -946,7 +946,7 @@ function beginDiscussion(){
   document.getElementById('starter-announcement').innerHTML = `
     <div class="starter-banner">
       <i class="ti ti-message-square-text"></i>
-      <span>First clue goes to: ${state.starterName}</span>
+      <span>${state.starterName} starts off the round.</span>
     </div>`;
     
   document.getElementById('d-cat-tag').textContent = state.entry.category;
@@ -989,7 +989,7 @@ function showResult(impostorWon){
   if(impostorWon){
     banner.style.background = 'var(--bg-danger-light)';
     banner.style.border = '1px solid var(--border-color)';
-    banner.innerHTML = `<div style="font-size:22px; font-weight:800; color:var(--color-danger)"><i class="ti ti-trophy"></i> Impostor Victory!</div><p style="color:var(--color-danger); margin-top:6px; font-weight:600">The Impostor figured out the secret word! (+2 pts to Impostors)</p>`;
+    banner.innerHTML = `<div style="font-size:22px; font-weight:800; color:var(--color-danger)"><i class="ti ti-trophy"></i> Impostor Wins!</div><p style="color:var(--color-danger); margin-top:6px; font-weight:600">The Impostor figured out the secret word! (+2 pts to Impostors)</p>`;
   } else {
     banner.style.background = 'var(--bg-success-light)';
     banner.style.border = '1px solid var(--border-color)';
