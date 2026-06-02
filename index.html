@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Impostor Game</title>
+  <title>Impostor</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <style>
-    /* Theme Definitions */
+    /* Premium Multi-Theme Core Design Engine */
     :root {
       --bg-app: #f4f6f9;
       --bg-card: #ffffff;
@@ -15,7 +15,6 @@
       --text-primary: #212529;
       --text-secondary: #495057;
       --text-muted: #868e96;
-      
       --color-primary: #4361ee;
       --color-success: #2ec4b6;
       --bg-success-light: #e6f9f7;
@@ -32,18 +31,35 @@
       --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    [data-theme="light"] {
+      --bg-app: #fdfdfd;
+      --bg-card: #ffffff;
+      --bg-secondary: #f1f3f5;
+      --border-color: #dee2e6;
+      --text-primary: #1a1a1a;
+      --text-secondary: #495057;
+      --text-muted: #adb5bd;
+      --color-primary: #000000;
+      --color-success: #2b8a3e;
+      --bg-success-light: #ebfbee;
+      --color-danger: #c92a2a;
+      --bg-danger-light: #fff5f5;
+    }
+
     [data-theme="dark"] {
-      --bg-app: #0b0f19;
-      --bg-card: #151d30;
-      --bg-secondary: #1d273f;
-      --border-color: #253252;
+      --bg-app: #121214;
+      --bg-card: #1a1a1e;
+      --bg-secondary: #252529;
+      --border-color: #2d2d33;
       --text-primary: #f8f9fa;
-      --text-secondary: #cbd5e1;
-      --text-muted: #64748b;
-      --bg-success-light: rgba(46, 196, 182, 0.15);
-      --bg-danger-light: rgba(230, 57, 70, 0.15);
-      --bg-accent-light: rgba(114, 9, 183, 0.15);
-      --shadow-md: 0 10px 30px rgba(0,0,0,0.25);
+      --text-secondary: #e4e4e7;
+      --text-muted: #71717a;
+      --color-primary: #3b82f6;
+      --color-success: #10b981;
+      --bg-success-light: rgba(16, 185, 129, 0.12);
+      --color-danger: #ef4444;
+      --bg-danger-light: rgba(239, 68, 68, 0.12);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     [data-theme="neon"] {
@@ -100,7 +116,7 @@
       max-width: 480px;
     }
 
-    /* Interactive Header */
+    /* Core Navigation Headers */
     .app-header {
       display: flex;
       justify-content: space-between;
@@ -116,29 +132,23 @@
       gap: 10px;
       letter-spacing: -0.5px;
     }
-    
-    .theme-select-wrapper {
+    .settings-trigger {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 6px;
-      background: var(--bg-card);
-      padding: 6px 12px;
-      border-radius: 30px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-sm);
-    }
-    .theme-select-wrapper i { font-size: 16px; color: var(--color-primary); }
-    .theme-dropdown {
-      background: transparent;
-      border: none;
-      color: var(--text-primary);
-      font-size: 13px;
-      font-weight: 600;
+      justify-content: center;
       cursor: pointer;
-      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
     }
+    .settings-trigger:hover { transform: rotate(45deg) scale(1.05); color: var(--color-primary); }
 
-    /* Screen Navigation and Transitions */
+    /* Layout Screen Controllers & Smooth Interpolation */
     .screen {
       display: none;
       opacity: 0;
@@ -154,7 +164,7 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Custom Cards */
+    /* Card Panels */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -171,7 +181,7 @@
     p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 0.75rem; }
     .muted { color: var(--text-muted); font-size: 13px; }
 
-    /* Custom Switch Toggles */
+    /* Elegant Custom Options Toggles */
     .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
     .toggle-info { display: flex; flex-direction: column; gap: 2px; }
     .sw { position: relative; width: 48px; height: 26px; flex-shrink: 0; }
@@ -181,49 +191,28 @@
     .sw input:checked + .sl { background: var(--color-primary); }
     .sw input:checked + .sl:before { transform: translateX(22px); }
 
-    /* Impostor Percentage Probability Grid */
-    .prob-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-    .prob-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-secondary);
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-    }
-    .prob-label { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-    .prob-controls { display: flex; align-items: center; gap: 12px; }
-    .prob-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .prob-btn:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
-    .prob-value { font-size: 14px; font-weight: 700; min-width: 40px; text-align: center; }
+    /* Dropdown Multi-Themer Option UI */
+    .dropdown-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; margin-bottom: 12px; }
+    .select-wrapper { display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    .select-wrapper i { font-size: 16px; color: var(--color-primary); }
+    .theme-dropdown { background: transparent; border: none; color: var(--text-primary); font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
 
-    /* Layout Rows & Profiles */
+    /* Autoblancing Matrix Engine List styles */
+    .prob-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 0.75rem; }
+    .prob-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg-secondary); padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    .prob-label { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .prob-controls { display: flex; align-items: center; gap: 12px; }
+    .prob-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); }
+    .prob-btn:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+    .prob-value { font-size: 14px; font-weight: 800; min-width: 44px; text-align: center; color: var(--color-primary); }
+
+    /* Grid Framework Profiles */
     .player-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
     .player-row:last-child { border-bottom: none; }
     .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; box-shadow: var(--shadow-sm); }
     
-    /* Elegant Tags and Presentation Cards */
-    .cat-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 6px 14px; border-radius: 30px; background: var(--bg-accent-light); color: var(--color-accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* Presentation Banners and Output Areas */
+    .cat-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 6px 14px; border-radius: 30px; background: var(--bg-accent-light); color: var(--color-accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
     .big-role { font-size: 26px; font-weight: 800; margin: 1.25rem 0 0.5rem; text-align: center; letter-spacing: -0.5px; }
     .word-box { font-size: 32px; font-weight: 800; text-align: center; padding: 1.75rem; background: var(--bg-secondary); border: 2px dashed var(--border-color); border-radius: var(--radius-md); margin: 1.25rem 0; color: var(--color-primary); letter-spacing: -0.5px; }
     
@@ -232,22 +221,8 @@
     
     .starter-banner { display: flex; align-items: center; gap: 10px; background: var(--bg-success-light); color: var(--color-success); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; font-weight: 700; font-size: 14px; border: 1px solid var(--border-color); }
 
-    /* Modern Buttons & Interactive Fields */
-    button {
-      background: var(--text-primary);
-      color: var(--bg-card);
-      border: none;
-      border-radius: var(--radius-md);
-      padding: 12px 22px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
+    /* Interaction Mechanics & Inputs */
+    button { background: var(--text-primary); color: var(--bg-card); border: none; border-radius: var(--radius-md); padding: 12px 22px; font-size: 15px; font-weight: 700; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
     button:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: var(--shadow-sm); }
     button:active { transform: translateY(0); }
     
@@ -259,7 +234,7 @@
     input[type="text"] { flex: 1; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; color: var(--text-primary); font-size: 15px; font-weight: 600; transition: var(--transition); }
     input[type="text"]:focus { outline: none; border-color: var(--color-primary); background: var(--bg-card); }
 
-    /* Scoreboard Element Formatting */
+    /* Leaderboard Scores Framework */
     .score-tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
     .score-tbl td { padding: 14px 8px; border-bottom: 1px solid var(--border-color); }
     .score-tbl tr:last-child td { border-bottom: none; }
@@ -275,45 +250,62 @@
 
 <div class="container">
   <header class="app-header">
-    <div class="app-title"><i class="ti ti-mask"></i> Impostor Room</div>
-    <div class="theme-select-wrapper">
-      <i class="ti ti-palette"></i>
-      <select class="theme-dropdown" onchange="changeTheme(this.value)" id="theme-selector">
-        <option value="sunset">Sunset Glow</option>
-        <option value="light">Crisp Clean</option>
-        <option value="dark">Cyber Space</option>
-        <option value="neon">Neon Night</option>
-      </select>
-    </div>
+    <div class="app-title" onclick="backToLobby()" style="cursor:pointer"><i class="ti ti-mask"></i> Impostor Room</div>
+    <button class="settings-trigger" id="gear-btn" onclick="openSettings()" aria-label="Open settings room configuration">
+      <i class="ti ti-settings"></i>
+    </button>
   </header>
 
   <main id="s-lobby" class="screen active">
-    <div class="card">
-      <h2><i class="ti ti-settings" style="color:var(--color-primary)"></i> Room Settings</h2>
-      <div class="toggle-row">
-        <div class="toggle-info">
-          <div style="font-size:15px; font-weight:700">Impostor Hints</div>
-          <div class="muted">Give Impostors a very broad hint to help them blend in</div>
-        </div>
-        <label class="sw">
-          <input type="checkbox" id="hint-toggle" checked />
-          <span class="sl"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2><i class="ti ti-percentage" style="color:var(--color-accent)"></i> Impostor Count Probability</h2>
-      <p class="muted" style="margin-bottom: 12px;">Set the weight chances for how many Impostors will be randomly selected (0 to 6 imps).</p>
-      <div class="prob-grid" id="prob-container"></div>
-    </div>
-
     <div class="card">
       <h2><i class="ti ti-users" style="color:var(--color-success)"></i> Group Players</h2>
       <div id="lobby-players"></div>
     </div>
     <button onclick="startGame()" class="btn-wide" style="background:var(--color-primary); color:#fff">Start Match Session <i class="ti ti-arrow-right"></i></button>
   </main>
+
+  <section id="s-settings" class="screen">
+    <div class="card">
+      <h2><i class="ti ti-palette" style="color:var(--color-primary)"></i> Choose Studio Theme</h2>
+      <div class="dropdown-row">
+        <div class="toggle-info">
+          <div style="font-size:15px; font-weight:700">App Matrix Theme</div>
+          <div class="muted">Changes interface global visual style</div>
+        </div>
+        <div class="select-wrapper">
+          <i class="ti ti-brush"></i>
+          <select class="theme-dropdown" onchange="updateThemePreference(this.value)" id="theme-selector">
+            <option value="sunset">Sunset Glow</option>
+            <option value="light">Simple Light</option>
+            <option value="dark">Simple Dark</option>
+            <option value="neon">Neon Night</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="ti ti-wand" style="color:var(--color-success)"></i> Hint Matrix Rules</h2>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div style="font-size:15px; font-weight:700">Impostor Clue Hints</div>
+          <div class="muted">Equip Impostors with a broad word category helper</div>
+        </div>
+        <label class="sw">
+          <input type="checkbox" id="hint-toggle" onchange="updateHintPreference()" checked />
+          <span class="sl"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="ti ti-scale" style="color:var(--color-accent)"></i> Auto-Balancing Weights (Total: 100%)</h2>
+      <p class="muted" style="margin-bottom: 12px;">Dials recalculate automatically across indices to guarantee mathematical percentage distribution.</p>
+      <div class="prob-grid" id="prob-container"></div>
+    </div>
+
+    <button onclick="backToLobby()" class="btn-wide btn-secondary"><i class="ti ti-check"></i> Save & Return to Lobby</button>
+  </section>
 
   <section id="s-pass" class="screen">
     <div class="card text-center" style="padding: 3.5rem 1.5rem;">
@@ -395,7 +387,7 @@ const COLORS = [
   {bg:'#e2e3e5', c:'#383d41'}
 ];
 
-// Replaced all structural/network anomaly tags with classic "Hint" configuration definitions
+// Content Word Matrix Array Configuration
 const WORD_DATA = {
   "Sports":[
     ["Soccer","Field"],["Basketball","Court"],["Baseball","Team"],["American Football","Contact"],["Cricket","Match"],
@@ -602,41 +594,128 @@ CATEGORY_NAMES.forEach(cat => {
   pointers[cat] = 0;
 });
 
-// Customizable state configs featuring Impostor Chance Configuration Weights
+// Primary Game Configuration state with LocalStorage State Memory
 let state = {
   scores: {}, 
   hintsOn: true, 
+  theme: "sunset",
   entry: null, 
   impostorIndices: [], 
   currentIdx: 0, 
   starterName: "",
-  probabilities: { 0: 0, 1: 70, 2: 20, 3: 10, 4: 0, 5: 0, 6: 0 }
+  probabilities: { 0: 5, 1: 70, 2: 20, 3: 5, 4: 0, 5: 0, 6: 0 }
 };
 
-function changeTheme(themeName) {
-  document.body.setAttribute('data-theme', themeName);
+// LocalStorage Engine Initializer
+function loadSavedPreferences() {
+  const savedTheme = localStorage.getItem('imp_theme');
+  if (savedTheme) {
+    state.theme = savedTheme;
+    document.getElementById('theme-selector').value = savedTheme;
+    document.body.setAttribute('data-theme', savedTheme);
+  }
+  
+  const savedHints = localStorage.getItem('imp_hints');
+  if (savedHints !== null) {
+    state.hintsOn = (savedHints === 'true');
+    document.getElementById('hint-toggle').checked = state.hintsOn;
+  }
+
+  const savedProbs = localStorage.getItem('imp_probs');
+  if (savedProbs) {
+    try {
+      state.probabilities = JSON.parse(savedProbs);
+    } catch(e) { console.error("Error loading probabilities data profile matrix.", e); }
+  }
 }
 
-function renderProbabilityControls() {
+function updateThemePreference(themeName) {
+  state.theme = themeName;
+  document.body.setAttribute('data-theme', themeName);
+  localStorage.setItem('imp_theme', themeName);
+}
+
+function updateHintPreference() {
+  state.hintsOn = document.getElementById('hint-toggle').checked;
+  localStorage.setItem('imp_hints', state.hintsOn);
+}
+
+/* Mathematically locked 100% distribution allocation adjuster.
+  When one key count dial shifts, other non-zero parameters automatically 
+  expand or contract proportionally to hold the global system weight at 100%.
+*/
+function adjustProbabilityMatrix(targetNum, delta) {
+  let prevValue = state.probabilities[targetNum];
+  let newValue = prevValue + delta;
+  if (newValue < 0 || newValue > 100) return; // Prevent boundaries breaks
+
+  state.probabilities[targetNum] = newValue;
+  let actualDelta = newValue - prevValue;
+
+  // Distribute the inverse of delta across all alternative rows
+  let alternativeKeys = Object.keys(state.probabilities).map(Number).filter(k => k !== targetNum);
+  
+  if (actualDelta !== 0) {
+    if (actualDelta > 0) {
+      // Reduce other rows that are currently greater than 0
+      let availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
+      if (availableReduceKeys.length === 0) {
+        state.probabilities[targetNum] = prevValue; // Rollback, balance impossible
+        return;
+      }
+      
+      let amountToReduce = actualDelta;
+      while (amountToReduce > 0 && availableReduceKeys.length > 0) {
+        let step = Math.min(5, amountToReduce);
+        let key = availableReduceKeys[Math.floor(Math.random() * availableReduceKeys.length)];
+        state.probabilities[key] -= step;
+        amountToReduce -= step;
+        availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
+      }
+    } else {
+      // Increase alternative index spaces to match deficit drop
+      let amountToIncrease = Math.abs(actualDelta);
+      while (amountToIncrease > 0) {
+        let key = alternativeKeys[Math.floor(Math.random() * alternativeKeys.length)];
+        state.probabilities[key] += 5;
+        amountToIncrease -= 5;
+      }
+    }
+  }
+
+  // Final sanity array standardization normalization check to clamp rounding errors
+  let currentSum = Object.values(state.probabilities).reduce((a, b) => a + b, 0);
+  if (currentSum !== 100) {
+    let fixDelta = 100 - currentSum;
+    let fallbackKeys = Object.keys(state.probabilities);
+    if (fixDelta > 0) {
+      state.probabilities[fallbackKeys[0]] += fixDelta;
+    } else {
+      for(let k of fallbackKeys) {
+        if(state.probabilities[k] >= Math.abs(fixDelta)) {
+          state.probabilities[k] += fixDelta;
+          break;
+        }
+      }
+    }
+  }
+
+  localStorage.setItem('imp_probs', JSON.stringify(state.probabilities));
+  renderProbabilityRows();
+}
+
+function renderProbabilityRows() {
   const container = document.getElementById('prob-container');
   container.innerHTML = Object.keys(state.probabilities).map(num => `
     <div class="prob-row">
       <div class="prob-label"><i class="ti ti-mask"></i> ${num} ${num == 1 ? 'Impostor' : 'Impostors'}</div>
       <div class="prob-controls">
-        <button type="button" class="prob-btn" onclick="adjustProb(${num}, -5)">-</button>
+        <button type="button" class="prob-btn" onclick="adjustProbabilityMatrix(${num}, -5)">-</button>
         <span class="prob-value" id="prob-val-${num}">${state.probabilities[num]}%</span>
-        <button type="button" class="prob-btn" onclick="adjustProb(${num}, 5)">+</button>
+        <button type="button" class="prob-btn" onclick="adjustProbabilityMatrix(${num}, 5)">+</button>
       </div>
     </div>
   `).join('');
-}
-
-function adjustProb(num, delta) {
-  let newVal = state.probabilities[num] + delta;
-  if (newVal < 0) newVal = 0;
-  if (newVal > 100) newVal = 100;
-  state.probabilities[num] = newVal;
-  document.getElementById(`prob-val-${num}`).textContent = `${newVal}%`;
 }
 
 function rollImpostorCount() {
@@ -648,9 +727,9 @@ function rollImpostorCount() {
       pool.push(count);
     }
   });
-  if (pool.length === 0) return 1; // Safeguard fallback if all weights are zeroed
+  if (pool.length === 0) return 1; 
   let rolledCount = pool[Math.floor(Math.random() * pool.length)];
-  return Math.min(rolledCount, PLAYERS.length); // Ensure we never exceed player bounds
+  return Math.min(rolledCount, PLAYERS.length); 
 }
 
 function pickEntry() {
@@ -667,6 +746,16 @@ function pickEntry() {
   return {category: cat, word, hint};
 }
 
+function openSettings() {
+  document.getElementById('gear-btn').style.display = 'none';
+  showScreen('s-settings');
+}
+
+function backToLobby() {
+  document.getElementById('gear-btn').style.display = 'flex';
+  showScreen('s-lobby');
+}
+
 function initLobby() {
   PLAYERS.forEach(p => { if(!state.scores[p]) state.scores[p] = 0; });
   document.getElementById('lobby-players').innerHTML = PLAYERS.map((p, i) => `
@@ -674,7 +763,9 @@ function initLobby() {
       <div class="avatar" style="background:${COLORS[i].bg}; color:${COLORS[i].c}">${p[0]}</div>
       <span style="font-size:14px; font-weight:700">${p}</span>
     </div>`).join('');
-  renderProbabilityControls();
+  
+  loadSavedPreferences();
+  renderProbabilityRows();
 }
 
 function showScreen(id){
@@ -683,7 +774,7 @@ function showScreen(id){
 }
 
 function startGame(){
-  state.hintsOn = document.getElementById('hint-toggle').checked;
+  document.getElementById('gear-btn').style.display = 'none';
   setupGameCore();
 }
 
@@ -695,7 +786,6 @@ function setupGameCore() {
   state.entry = pickEntry();
   state.currentIdx = 0;
   
-  // Dynamic calculation determining active impostor index allocations
   let impostorCount = rollImpostorCount();
   state.impostorIndices = [];
   
@@ -703,9 +793,8 @@ function setupGameCore() {
   playerIndices.sort(() => Math.random() - 0.5);
   state.impostorIndices = playerIndices.slice(0, impostorCount);
   
-  // Randomly select a crewmate to be the starter player for clues
   let validStarters = PLAYERS.filter((_, idx) => !state.impostorIndices.includes(idx));
-  if (validStarters.length === 0) validStarters = [...PLAYERS]; // Fallback if 100% impostor setup rolled
+  if (validStarters.length === 0) validStarters = [...PLAYERS]; 
   state.starterName = validStarters[Math.floor(Math.random() * validStarters.length)];
   
   showPass();
@@ -776,13 +865,11 @@ function checkGuess(){
   const g = document.getElementById('guess-in').value.trim();
   if(!g) return;
   if(g.toLowerCase() === state.entry.word.toLowerCase()){
-    // Impostors guessed the word correctly! Award points to all impostors
     state.impostorIndices.forEach(idx => {
       state.scores[PLAYERS[idx]] = (state.scores[PLAYERS[idx]] || 0) + 2;
     });
     showResult(true);
   } else {
-    // False guess, crewmates win! Award points to all crewmates
     PLAYERS.forEach((p, i) => { 
       if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
     });
@@ -791,7 +878,6 @@ function checkGuess(){
 }
 
 function revealEnd(){
-  // Regular vote phase finished. Award points to crewmates
   PLAYERS.forEach((p, i) => { 
     if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
   });
@@ -810,7 +896,6 @@ function showResult(impostorWon){
     banner.innerHTML = `<div style="font-size:22px; font-weight:800; color:var(--color-success)"><i class="ti ti-shield-check"></i> Crewmates Win!</div><p style="color:var(--color-success); margin-top:6px; font-weight:600">The Impostor was successfully caught or failed their guess! (+1 pt to Crewmates)</p>`;
   }
   
-  // Render the list of all active impostors
   const listContainer = document.getElementById('res-impostor-list');
   if (state.impostorIndices.length === 0) {
     listContainer.innerHTML = `<div class="muted">There were no Impostors this round!</div>`;
