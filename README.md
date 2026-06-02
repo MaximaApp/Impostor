@@ -24,3 +24,10 @@ To host this instantly on GitHub Pages, structure your repository like this:
 ```text
 ├── index.html        # Main application file containing structure, styling, and game logic
 └── README.md         # Documentation and setup guide (This file)
+```
+
+---
+
+## ✔ How Do I Start Playing?
+
+Simple! Just grab your friends or family and click [here](https://maximaapp.github.io/Impostor/).
