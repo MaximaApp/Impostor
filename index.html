@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Impostor</title>
+  <title>Impostor Room</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <style>
     /* Premium Multi-Theme Core Design Engine */
@@ -44,6 +44,9 @@
       --bg-success-light: #ebfbee;
       --color-danger: #c92a2a;
       --bg-danger-light: #fff5f5;
+      --color-accent: #495057;
+      --bg-accent-light: #f8f9fa;
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     [data-theme="dark"] {
@@ -59,6 +62,8 @@
       --bg-success-light: rgba(16, 185, 129, 0.12);
       --color-danger: #ef4444;
       --bg-danger-light: rgba(239, 68, 68, 0.12);
+      --color-accent: #a855f7;
+      --bg-accent-light: rgba(168, 85, 247, 0.12);
       --shadow-md: 0 10px 30px rgba(0,0,0,0.4);
     }
 
@@ -96,6 +101,78 @@
       --color-accent: #f7b267;
       --bg-accent-light: #fff3b0;
       --shadow-md: 0 10px 25px rgba(224, 87, 128, 0.08);
+    }
+
+    [data-theme="cyberpunk"] {
+      --bg-app: #1a1a1a;
+      --bg-card: #000000;
+      --bg-secondary: #2d2d00;
+      --border-color: #fcee0a;
+      --text-primary: #fcee0a;
+      --text-secondary: #ffffff;
+      --text-muted: #888800;
+      --color-primary: #00f0ff;
+      --color-success: #39ff14;
+      --bg-success-light: rgba(57,255,20,0.1);
+      --color-danger: #ff0055;
+      --bg-danger-light: rgba(255,0,85,0.1);
+      --color-accent: #ff00ff;
+      --bg-accent-light: rgba(255,0,255,0.1);
+      --shadow-md: 0 0 15px rgba(252, 238, 10, 0.3);
+    }
+
+    [data-theme="retro"] {
+      --bg-app: #2c1654;
+      --bg-card: #1b0b3a;
+      --bg-secondary: #3d256e;
+      --border-color: #ff00aa;
+      --text-primary: #33ff00;
+      --text-secondary: #00ffff;
+      --text-muted: #a100ff;
+      --color-primary: #ff00aa;
+      --color-success: #33ff00;
+      --bg-success-light: rgba(51,255,0,0.15);
+      --color-danger: #ff3333;
+      --bg-danger-light: rgba(255,51,51,0.15);
+      --color-accent: #00ffff;
+      --bg-accent-light: rgba(0,255,255,0.15);
+      --shadow-md: 0 0 25px rgba(27, 11, 58, 0.8);
+    }
+
+    [data-theme="forest"] {
+      --bg-app: #2d3a3a;
+      --bg-card: #1b2424;
+      --bg-secondary: #253333;
+      --border-color: #4b645a;
+      --text-primary: #e2f1ec;
+      --text-secondary: #a3c6bc;
+      --text-muted: #628377;
+      --color-primary: #8bc34a;
+      --color-success: #4caf50;
+      --bg-success-light: rgba(76,175,80,0.12);
+      --color-danger: #ff5722;
+      --bg-danger-light: rgba(255,87,34,0.12);
+      --color-accent: #ffc107;
+      --bg-accent-light: rgba(255,193,7,0.12);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="ocean"] {
+      --bg-app: #0b132b;
+      --bg-card: #1c2541;
+      --bg-secondary: #3a506b;
+      --border-color: #5bc0be;
+      --text-primary: #ffffff;
+      --text-secondary: #e0f2f1;
+      --text-muted: #6fffe9;
+      --color-primary: #5bc0be;
+      --color-success: #6fffe9;
+      --bg-success-light: rgba(111,255,233,0.1);
+      --color-danger: #ff6b6b;
+      --bg-danger-light: rgba(255,107,107,0.15);
+      --color-accent: #48cae4;
+      --bg-accent-light: rgba(72,202,228,0.15);
+      --shadow-md: 0 8px 32px rgba(11, 19, 43, 0.5);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -196,6 +273,7 @@
     .select-wrapper { display: flex; align-items: center; gap: 8px; background: var(--bg-secondary); padding: 8px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
     .select-wrapper i { font-size: 16px; color: var(--color-primary); }
     .theme-dropdown { background: transparent; border: none; color: var(--text-primary); font-size: 14px; font-weight: 700; cursor: pointer; outline: none; }
+    .theme-dropdown option { background: var(--bg-card); color: var(--text-primary); }
 
     /* Autoblancing Matrix Engine List styles */
     .prob-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 0.75rem; }
@@ -212,7 +290,7 @@
     .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; box-shadow: var(--shadow-sm); }
     
     /* Presentation Banners and Output Areas */
-    .cat-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 6px 14px; border-radius: 30px; background: var(--bg-accent-light); color: var(--color-accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .cat-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 6px 14px; border-radius: 30px; background: var(--bg-accent-light); color: var(--color-accent); font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid var(--border-color); }
     .big-role { font-size: 26px; font-weight: 800; margin: 1.25rem 0 0.5rem; text-align: center; letter-spacing: -0.5px; }
     .word-box { font-size: 32px; font-weight: 800; text-align: center; padding: 1.75rem; background: var(--bg-secondary); border: 2px dashed var(--border-color); border-radius: var(--radius-md); margin: 1.25rem 0; color: var(--color-primary); letter-spacing: -0.5px; }
     
@@ -250,7 +328,7 @@
 
 <div class="container">
   <header class="app-header">
-    <div class="app-title" onclick="backToLobby()" style="cursor:pointer"><i class="ti ti-mask"></i> Impostor</div>
+    <div class="app-title" onclick="backToLobby()" style="cursor:pointer"><i class="ti ti-mask"></i> Impostor Room</div>
     <button class="settings-trigger" id="gear-btn" onclick="openSettings()" aria-label="Open settings room configuration">
       <i class="ti ti-settings"></i>
     </button>
@@ -261,7 +339,7 @@
       <h2><i class="ti ti-users" style="color:var(--color-success)"></i> Group Players</h2>
       <div id="lobby-players"></div>
     </div>
-    <button onclick="startGame()" class="btn-wide" style="background:var(--color-primary); color:#fff">Start Match Session <i class="ti ti-arrow-right"></i></button>
+    <button onclick="startGame()" class="btn-wide" style="background:var(--color-primary); color:var(--bg-card)">Start Match Session <i class="ti ti-arrow-right"></i></button>
   </main>
 
   <section id="s-settings" class="screen">
@@ -275,10 +353,14 @@
         <div class="select-wrapper">
           <i class="ti ti-brush"></i>
           <select class="theme-dropdown" onchange="updateThemePreference(this.value)" id="theme-selector">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
             <option value="sunset">Sunset Glow</option>
+            <option value="light">Simple Light</option>
+            <option value="dark">Simple Dark</option>
             <option value="neon">Neon Night</option>
+            <option value="cyberpunk">Cyberpunk 2077</option>
+            <option value="retro">Retro Arcade</option>
+            <option value="forest">Forest Moss</option>
+            <option value="ocean">Ocean Trench</option>
           </select>
         </div>
       </div>
@@ -288,7 +370,7 @@
       <h2><i class="ti ti-wand" style="color:var(--color-success)"></i> Hint Matrix Rules</h2>
       <div class="toggle-row">
         <div class="toggle-info">
-          <div style="font-size:15px; font-weight:700">Impostor Hints</div>
+          <div style="font-size:15px; font-weight:700">Impostor Clue Hints</div>
           <div class="muted">Equip Impostors with a broad word category helper</div>
         </div>
         <label class="sw">
@@ -299,7 +381,7 @@
     </div>
 
     <div class="card">
-      <h2><i class="ti ti-scale" style="color:var(--color-accent)"></i> Auto-Balancing Weights</h2>
+      <h2><i class="ti ti-scale" style="color:var(--color-accent)"></i> Auto-Balancing Weights (Total: 100%)</h2>
       <p class="muted" style="margin-bottom: 12px;">Dials recalculate automatically across indices to guarantee mathematical percentage distribution.</p>
       <div class="prob-grid" id="prob-container"></div>
     </div>
@@ -312,7 +394,7 @@
       <i class="ti ti-device-mobile-rotated" style="font-size:64px; color:var(--text-muted); display:block; margin-bottom:1.5rem"></i>
       <h2 id="pass-name" style="font-size:24px; margin-bottom:0.5rem; justify-content:center"></h2>
       <p>Pass the device to this person. Keep the screen hidden from everyone else!</p>
-      <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:white">View Role</button>
+      <button onclick="revealRole()" class="btn-wide" style="background:var(--color-primary); color:var(--bg-card)">View Secret Role</button>
     </div>
   </section>
 
@@ -324,7 +406,7 @@
       <div class="text-center"><span class="cat-tag" id="r-sub"></span></div>
       <div id="r-word"></div>
       <div id="r-hint"></div>
-      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Pass the Phone</button>
+      <button id="r-next" onclick="nextPlayer()" class="btn-wide">Done, Hide Screen</button>
       <button id="r-start" onclick="beginDiscussion()" class="btn-wide" style="display:none; background:var(--color-success); color:#fff">Everyone Ready - Start Discussion</button>
     </div>
   </section>
@@ -333,7 +415,7 @@
     <div id="starter-announcement"></div>
     <div class="card">
       <div class="cat-tag" id="d-cat-tag"></div>
-      <p style="margin:0; font-size:14px">Take turns giving a single word clue. Crewmates want to find the Impostors. Impostors want to blend in and guess the secret word.</p>
+      <p style="margin:0; font-size:14px">Take turns giving a single word clue. Crewmates want to find the Impostors. Impostors want to blend in and guess the Secret Word.</p>
     </div>
     <div class="card">
       <h2><i class="ti ti-users" style="color:var(--color-primary)"></i> Players Alive</h2>
@@ -344,7 +426,7 @@
       <p class="muted">If you are the Impostor and know the word, guess it below to secure an immediate win!</p>
       <div class="guess-row">
         <input type="text" id="guess-in" placeholder="Type secret word guess..." />
-        <button onclick="checkGuess()" style="background:var(--text-primary)">Submit Guess</button>
+        <button onclick="checkGuess()" style="background:var(--text-primary); color:var(--bg-card)">Submit Guess</button>
       </div>
     </div>
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:4px">
@@ -370,14 +452,14 @@
       <table class="score-tbl" id="res-scores"></table>
     </div>
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:4px">
-      <button onclick="playAgain()" style="background:var(--color-primary); color:white"><i class="ti ti-player-play"></i> Next Round</button>
+      <button onclick="playAgain()" style="background:var(--color-primary); color:var(--bg-card)"><i class="ti ti-player-play"></i> Next Round</button>
       <button onclick="newGame()" class="btn-secondary"><i class="ti ti-refresh"></i> Full Reset</button>
     </div>
   </section>
 </div>
 
 <script>
-const PLAYERS = ["Nathan", "Noah", "Nolan", "Kaylin", "Kayla", "Kha"];
+const PLAYERS = ["Noah", "Nathan", "Nolan", "Kaylin", "Kayla", "Kha"];
 const COLORS = [
   {bg:'var(--bg-accent-light)', c:'var(--color-accent)'},
   {bg:'var(--bg-success-light)', c:'var(--color-success)'},
@@ -389,6 +471,24 @@ const COLORS = [
 
 // Content Word Matrix Array Configuration
 const WORD_DATA = {
+  "Holidays":[
+    ["Fireworks","Spectacle"],["Confetti","Party Supply"],["Balloons","Party Supply"],["Party Hats","Accessory"],["Ball Drop","Event"],
+    ["Candy","Confection"],["Heart","Symbol"],["Envelope","Item"],["Letter","Communication"],["Partner","Person"],
+    ["Sweets","Confection"],["Chocolate Box","Gift"],["Clover","Nature"],["Rainbow","Phenomenon"],["Pot of Gold","Treasure"],
+    ["Leprechaun","Creature"],["Easter Egg","Item"],["Jesus","Figure"],["Bunnies","Wildlife"],["Egg Basket","Container"],
+    ["American Flag","Emblem"],["Stars and Stripes","Design"],["Uncle Sam","Character"],["Independence","Idea"],["Pumpkin","Flora"],
+    ["Jack-o-Lantern","Decoration"],["Costume","Attire"],["Decoration","Item"],["Jumpscare","Reaction"],["Candy Corn","Confection"],
+    ["Haunted House","Place"],["Bat","Wildlife"],["Treats","Foodstuff"],["Clown","Character"],["Ghost","Supernatural"],
+    ["Ghostface","Character"],["Mummy","Supernatural"],["Zombie","Supernatural"],["Graveyard","Place"],["Witch","Supernatural"],
+    ["Vampire","Supernatural"],["Turkey","Foodstuff"],["Ham","Foodstuff"],["Feast","Meal"],["Family","Group"],
+    ["Pumpkin Pie","Baked Good"],["Apple Pie","Baked Good"],["Green Bean Casserole","Prepared Dish"],["Corn","Flora"],["Mashed Potatoes","Prepared Dish"],
+    ["Gravy","Sauce"],["Sweet Potatoes","Flora"],["Reindeer","Wildlife"],["Toy Train","Object"],["Snow Globe","Decoration"],
+    ["Snowflake","Weather Element"],["Snowman","Structure"],["Christmas Tree","Flora"],["Pinecone","Nature"],["Rudolph","Character"],
+    ["Santa Claus","Character"],["Mrs. Claus","Character"],["Frosty the Snowman","Character"],["Carols","Performance"],["Jingle Bells","Object"],
+    ["Wreath","Decoration"],["Ornament","Decoration"],["Chimney","Structure"],["Present","Gift"],["Candycane","Confection"],
+    ["Sleigh","Transportation"],["Gingerbread House","Structure"],["Gingerbread Man","Foodstuff"],["Coal","Resource"],["Hot Chocolate","Beverage"],
+    ["Eggnog","Beverage"],["Stocking","Garment"],["Elf","Creature"],["Menorah","Object"],["Countdown","Measurement"],["Religion","Idea"]
+  ],
   "Sports":[
     ["Soccer","Field"],["Basketball","Court"],["Baseball","Team"],["American Football","Contact"],["Cricket","Match"],
     ["Tennis","Net"],["Volleyball","Hands"],["Ice Hockey","Winter"],["Table Tennis","Table"],["Golf","Target"],
