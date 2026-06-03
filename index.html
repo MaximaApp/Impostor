@@ -1058,7 +1058,7 @@ function revealRole(){
   
   if(isImp){
     lbl.textContent = 'Impostor'; lbl.style.color = 'var(--color-danger)';
-    wordEl.innerHTML = `<div style="background:var(--bg-danger-light); border-radius:var(--radius-md); padding:1.25rem; font-size:14px; color:var(--color-danger); border: 1px solid var(--border-color); line-height:1.6" class="text-center"><i class="ti ti-eye-off"></i> You do not know the Secret Word. Blend in and listen closely to clues!</div>`;
+    wordEl.innerHTML = `<div style="background:var(--bg-danger-light); border-radius:var(--radius-md); padding:1.25rem; font-size:14px; color:var(--color-danger); border: 1px solid var(--border-color); line-height:1.6" class="text-center"><i class="ti ti-eye-off"></i> You do not know the secret word. Blend in and listen closely to clues.</div>`;
     hintEl.innerHTML = state.hintsOn
       ? `<div class="hint-label">Your Hint is</div><div class="hint-box">${state.entry.hint}</div>`
       : `<div class="hint-box" style="font-size:14px; color:var(--text-muted)"><i class="ti ti-eye-off"></i> Hints are turned off this game.</div>`;
