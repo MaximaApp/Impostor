@@ -1,4 +1,4 @@
-# 🕵️‍♂️ Impostor - Party Game
+# 🕵️‍♂️ Impostor - A Party Game Where Trust is Just a Word
 
 Impostor is a modern, mobile-optimized social deduction party game built to run entirely in your browser. Gather your friends around a single device, select a category, and try to hunt down the network anomaly, or the Impostor, before they decipher the secret word!
 
