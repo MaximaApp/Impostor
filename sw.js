@@ -1,23 +1,17 @@
 const CACHE_NAME = 'impostor-game-v1';
 
-// 1. You MUST list all the files your game needs to run here!
+// Only cache the 4 files that actually exist in your project
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './style.css',          // Your game's CSS
-  './game.js',            // Your game's main logic script
-  './assets/impostor.png', // Example: Player sprites/images
-  './assets/kill-sound.mp3'// Example: Game audio
+  './1780518954674.png' // Matches your manifest icon perfectly
 ];
 
-// Install Event: Caches all the game assets
+// Install Event: Caches the game assets
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Caching game assets...');
-      return cache.addAll(ASSETS);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
@@ -29,27 +23,22 @@ self.addEventListener('activate', (e) => {
       return Promise.all(
         keys
           .filter((key) => key !== CACHE_NAME)
-          .map((key) => {
-            console.log('Removing old cache:', key);
-            return caches.delete(key);
-          })
+          .map((key) => caches.delete(key))
       );
     })
   );
   self.clients.claim();
 });
 
-// Fetch Event: Network-first approach for multiplayer, or Cache-first for static assets
+// Fetch Event: Serving from cache for offline play
 self.addEventListener('fetch', (e) => {
-  // If your game uses live server data (like WebSockets or API calls), 
-  // don't try to cache those requests.
+  // Bypass caching if your game hits external multiplayer servers/sockets
   if (e.request.url.includes('/api/') || e.request.url.includes('socket.io')) {
     return; 
   }
 
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {
-      // Return the cached file if we have it, otherwise fetch from internet
       return cachedResponse || fetch(e.request);
     })
   );
