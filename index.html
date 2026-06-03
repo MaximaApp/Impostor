@@ -139,40 +139,76 @@
       --shadow-md: 0 0 25px rgba(27, 11, 58, 0.8);
     }
 
-    [data-theme="forest"] {
-      --bg-app: #2d3a3a;
-      --bg-card: #1b2424;
-      --bg-secondary: #253333;
-      --border-color: #4b645a;
-      --text-primary: #e2f1ec;
-      --text-secondary: #a3c6bc;
-      --text-muted: #628377;
-      --color-primary: #8bc34a;
+    [data-theme="volcanic"] {
+      --bg-app: #1a1515;
+      --bg-card: #261f1f;
+      --bg-secondary: #362c2c;
+      --border-color: #4a3b3b;
+      --text-primary: #ff6b35;
+      --text-secondary: #f7fff7;
+      --text-muted: #8b7373;
+      --color-primary: #ff3f00;
       --color-success: #4caf50;
-      --bg-success-light: rgba(76,175,80,0.12);
-      --color-danger: #ff5722;
-      --bg-danger-light: rgba(255,87,34,0.12);
-      --color-accent: #ffc107;
-      --bg-accent-light: rgba(255,193,7,0.12);
-      --shadow-md: 0 10px 25px rgba(0,0,0,0.3);
+      --bg-success-light: rgba(76,175,80,0.15);
+      --color-danger: #e63946;
+      --bg-danger-light: rgba(230,57,70,0.15);
+      --color-accent: #ffb703;
+      --bg-accent-light: rgba(255,183,3,0.15);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.5);
     }
 
-    [data-theme="ocean"] {
-      --bg-app: #0b132b;
-      --bg-card: #1c2541;
-      --bg-secondary: #3a506b;
-      --border-color: #5bc0be;
-      --text-primary: #ffffff;
-      --text-secondary: #e0f2f1;
-      --text-muted: #6fffe9;
-      --color-primary: #5bc0be;
-      --color-success: #6fffe9;
-      --bg-success-light: rgba(111,255,233,0.1);
-      --color-danger: #ff6b6b;
-      --bg-danger-light: rgba(255,107,107,0.15);
-      --color-accent: #48cae4;
-      --bg-accent-light: rgba(72,202,228,0.15);
-      --shadow-md: 0 8px 32px rgba(11, 19, 43, 0.5);
+    [data-theme="matrix"] {
+      --bg-app: #030703;
+      --bg-card: #0d1a0d;
+      --bg-secondary: #142614;
+      --border-color: #00ff41;
+      --text-primary: #00ff41;
+      --text-secondary: #008f11;
+      --text-muted: #003b00;
+      --color-primary: #00ff41;
+      --color-success: #00ff41;
+      --bg-success-light: rgba(0,255,65,0.1);
+      --color-danger: #ff3333;
+      --bg-danger-light: rgba(255,51,51,0.15);
+      --color-accent: #008f11;
+      --bg-accent-light: rgba(0,143,17,0.15);
+      --shadow-md: 0 0 15px rgba(0, 255, 65, 0.2);
+    }
+
+    [data-theme="amethyst"] {
+      --bg-app: #1e112a;
+      --bg-card: #2e1c3f;
+      --bg-secondary: #3d2752;
+      --border-color: #d4af37;
+      --text-primary: #f3e8ff;
+      --text-secondary: #e9d5ff;
+      --text-muted: #a78bfa;
+      --color-primary: #d4af37;
+      --color-success: #10b981;
+      --bg-success-light: rgba(16,185,129,0.15);
+      --color-danger: #ef4444;
+      --bg-danger-light: rgba(239,68,68,0.15);
+      --color-accent: #c084fc;
+      --bg-accent-light: rgba(192,132,252,0.15);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    [data-theme="frost"] {
+      --bg-app: #edf6f9;
+      --bg-card: #ffffff;
+      --bg-secondary: #e0f2f1;
+      --border-color: #a8dadc;
+      --text-primary: #1d3557;
+      --text-secondary: #457b9d;
+      --text-muted: #98c1d9;
+      --color-primary: #457b9d;
+      --color-success: #2a9d8f;
+      --bg-success-light: #e0f2f1;
+      --color-danger: #e63946;
+      --bg-danger-light: #fdedee;
+      --color-accent: #219ebc;
+      --bg-accent-light: #e0f7fa;
+      --shadow-md: 0 8px 20px rgba(69,123,157,0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -359,8 +395,10 @@
             <option value="cyberpunk">Cyberpunk</option>
             <option value="neon">Neon Night</option>
             <option value="retro">Retro Arcade</option>
-            <option value="forest">Forest Moss</option>
-            <option value="ocean">Ocean Trench</option>
+            <option value="volcanic">Volcanic Ash</option>
+            <option value="matrix">Matrix Green</option>
+            <option value="amethyst">Royal Amethyst</option>
+            <option value="frost">Glacier Frost</option>
           </select>
         </div>
       </div>
@@ -973,6 +1011,7 @@ function checkGuess(){
     PLAYERS.forEach((p, i) => { 
       if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
     });
+    showResult(true ? false : false); /* Normal dynamic response mapping */
     showResult(false);
   }
 }
