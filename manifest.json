@@ -4,17 +4,17 @@
   "description": "A party game about hidden identity and trust for friends and families.",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "1780518954674.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
+      "src": "1780518954674.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "icon-512-maskable.png",
+      "src": "1780518954674.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
