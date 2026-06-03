@@ -510,22 +510,22 @@ const COLORS = [
 // Content Word Matrix Array Configuration
 const WORD_DATA = {
   "Holidays":[
-    ["Fireworks","Spectacle"],["Confetti","Party Supply"],["Balloons","Party Supply"],["Party Hats","Accessory"],["Ball Drop","Event"],
-    ["Candy","Confection"],["Heart","Symbol"],["Envelope","Item"],["Letter","Communication"],["Partner","Person"],
-    ["Sweets","Confection"],["Chocolate Box","Gift"],["Clover","Nature"],["Rainbow","Phenomenon"],["Pot of Gold","Treasure"],
-    ["Leprechaun","Creature"],["Easter Egg","Item"],["Jesus","Figure"],["Bunnies","Wildlife"],["Egg Basket","Container"],
-    ["American Flag","Emblem"],["Stars and Stripes","Design"],["Uncle Sam","Character"],["Independence","Idea"],["Pumpkin","Flora"],
-    ["Jack-o-Lantern","Decoration"],["Costume","Attire"],["Decoration","Item"],["Jumpscare","Reaction"],["Candy Corn","Confection"],
-    ["Haunted House","Place"],["Bat","Wildlife"],["Treats","Foodstuff"],["Clown","Character"],["Ghost","Supernatural"],
-    ["Ghostface","Character"],["Mummy","Supernatural"],["Zombie","Supernatural"],["Graveyard","Place"],["Witch","Supernatural"],
-    ["Vampire","Supernatural"],["Turkey","Foodstuff"],["Ham","Foodstuff"],["Feast","Meal"],["Family","Group"],
-    ["Pumpkin Pie","Baked Good"],["Apple Pie","Baked Good"],["Green Bean Casserole","Prepared Dish"],["Corn","Flora"],["Mashed Potatoes","Prepared Dish"],
-    ["Gravy","Sauce"],["Sweet Potatoes","Flora"],["Reindeer","Wildlife"],["Toy Train","Object"],["Snow Globe","Decoration"],
-    ["Snowflake","Weather Element"],["Snowman","Structure"],["Christmas Tree","Flora"],["Pinecone","Nature"],["Rudolph","Character"],
-    ["Santa Claus","Character"],["Mrs. Claus","Character"],["Frosty the Snowman","Character"],["Carols","Performance"],["Jingle Bells","Object"],
-    ["Wreath","Decoration"],["Ornament","Decoration"],["Chimney","Structure"],["Present","Gift"],["Candycane","Confection"],
-    ["Sleigh","Transportation"],["Gingerbread House","Structure"],["Gingerbread Man","Foodstuff"],["Coal","Resource"],["Hot Chocolate","Beverage"],
-    ["Eggnog","Beverage"],["Stocking","Garment"],["Elf","Creature"],["Menorah","Object"],["Countdown","Measurement"],["Religion","Idea"]
+    ["Fireworks","Celebration Spectacle"],["Confetti","Party Supplying Decor"],["Balloons","Party Supplying Decor"],["Party Hats","Wearable Accessory"],["Ball Drop","New Years Countdown Event"],
+    ["Candy","Sweet Confection Product"],["Heart","Romantic Emotion Symbol"],["Envelope","Paper Mailing Stationery"],["Letter","Written Communication Medium"],["Partner","Romantic Relationship Figure"],
+    ["Sweets","Sugary Treat Confection"],["Chocolate Box","Romantic Gifting Package"],["Clover","Lucky Green Flora"],["Rainbow","Atmospheric Weather Phenomenon"],["Pot of Gold","Mythological Leprechaun Treasure"],
+    ["Leprechaun","Irish Folklore Creature"],["Easter Egg","Springtime Decorative Treat"],["Jesus","Central Religious Figure"],["Bunnies","Springtime Seasonal Wildlife"],["Egg Basket","Festive Holiday Container"],
+    ["American Flag","National Patriotic Emblem"],["Stars and Stripes","Patriotic Textile Design"],["Uncle Sam","National Personification Character"],["Independence","Freedom Liberty Concept"],["Pumpkin","Autumn Seasonal Flora"],
+    ["Jack-o-Lantern","Carved Holiday Decoration"],["Costume","Festive Dress Attire"],["Decoration","Ornamental Atmosphere Setup"],["Jumpscare","Spooky Startling Reaction"],["Candy Corn","Autumn Triangular Confection"],
+    ["Haunted House","Spooky Themed Location"],["Bat","Nocturnal Flying Wildlife"],["Treats","Festive Holiday Foodstuffs"],["Clown","Costumed Entertainment Character"],["Ghost","Supernatural Apparition entity"],
+    ["Ghostface","Horror Film Character"],["Mummy","Ancient Supernatural entity"],["Zombie","Undead Monster entity"],["Graveyard","Spooky Burial Location"],["Witch","Magical Folklore Entity"],
+    ["Vampire","Gothic Supernatural Entity"],["Turkey","Festive Feast Bird"],["Ham","Festive Feast Meat"],["Feast","Large Celebration Meal"],["Family","Gathering Social Group"],
+    ["Pumpkin Pie","Autumn Baked Dessert"],["Apple Pie","Traditional Baked Dessert"],["Green Bean Casserole","Holiday Dinner Side"],["Corn","Agricultural Harvest Flora"],["Mashed Potatoes","Classic Dinner Side"],
+    ["Gravy","Warm Dinner Sauce"],["Sweet Potatoes","Harvest Tuber Flora"],["Reindeer","Winter Holiday Wildlife"],["Toy Train","Traditional Gifting Object"],["Snow Globe","Winter Decorative Object"],
+    ["Snowflake","Frozen Weather Element"],["Snowman","Winter Outdoor Structure"],["Christmas Tree","Festive Holiday Flora"],["Pinecone","Natural Forest Elements"],["Rudolph","Famous Holiday Character"],
+    ["Santa Claus","Winter Legend Character"],["Mrs. Claus","Winter Legend Character"],["Frosty the Snowman","Winter Legend Character"],["Carols","Festive Musical Performance"],["Jingle Bells","Musical Instrument Object"],
+    ["Wreath","Circular Door Decoration"],["Ornament","Tree Hanging Decoration"],["Chimney","Brick Roof Structure"],["Present","Wrapped Gifting Box"],["Candycane","Striped Minty Confection"],
+    ["Sleigh","Winter Transportation Vehicle"],["Gingerbread House","Edible Holiday Structure"],["Gingerbread Man","Edible Holiday Figure"],["Coal","Naughty List Resource"],["Hot Chocolate","Warm Winter Beverage"],
+    ["Eggnog","Traditional Holiday Beverage"],["Stocking","Hanging Fabric Garment"],["Elf","Santa Helper Creature"],["Menorah","Hanukkah Candelabra Object"],["Countdown","Time Measurement Action"],["Religion","Spiritual Belief System"]
   ],
   "Sports":[
     ["Soccer","Field"],["Basketball","Court"],["Baseball","Team"],["American Football","Contact"],["Cricket","Match"],
@@ -1011,7 +1011,6 @@ function checkGuess(){
     PLAYERS.forEach((p, i) => { 
       if(!state.impostorIndices.includes(i)) state.scores[p] = (state.scores[p] || 0) + 1; 
     });
-    showResult(true ? false : false); /* Normal dynamic response mapping */
     showResult(false);
   }
 }
