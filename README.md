@@ -30,4 +30,4 @@ To host this instantly on GitHub Pages, structure your repository like this:
 
 ## 🎉 How Do I Start Playing?
 
-Simple! Just grab your friends or family and click [here](https://maximaapp.github.io/Impostor/) to get started.
+Simple! Just grab your friends or family and click [here](https://maximaapp.github.io/Impostor/) to get started for absolutely free with no advertisements.
