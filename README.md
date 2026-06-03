@@ -1,8 +1,8 @@
 # 🕵️‍♂️ Impostor - A Party Game
 
-Impostor is a modern, mobile-optimized social deduction party game built to run entirely in your browser. Gather your friends around a single device, select a category, and try to hunt down the network anomaly, or the Impostor, before they decipher the secret word!
+Impostor is a modern, mobile-optimized social deduction party game built to run entirely in your browser. Gather your friends around a single device, select a category, and try to hunt down the network anamoly, or the Impostor, before they decipher the secret word!
 
-If players would like a twist to the game, the Impostor can be given an **ultra-broad, single-word structural anchor**, or a clue hint somewhat connected to the word, to prevent instant giveaways while also forcing them to blend in utilizing generic logic.
+If players would like a twist to the game, the Impostor can be given an **ultra-broad Hint** that is somewhat connected to the word to prevent instant giveaways while also forcing them to blend in utilizing generic logic.
 
 ---
 
