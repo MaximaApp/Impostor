@@ -2,11 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="theme-color" content="#fff1e6">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Impostor</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="apple-touch-icon" href="1780518954674.png">
-  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // --- APP MANIFEST MAGIC ---
+    const manifest = {
+      "name": "Impostor - Party Game",
+      "short_name": "Impostor",
+      "start_url": ".",
+      "display": "standalone",
+      "background_color": "#fff1e6",
+      "theme_color": "#4a1525",
+      "orientation": "portrait-primary",
+      "categories": ["games", "entertainment"],
+      "icons": [
+        {
+          "src": "1780518954674.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "1780518954674.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        },
+        {
+          "src": "1780518954674.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+    const manifestURL = URL.createObjectURL(manifestBlob);
+    const link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = manifestURL;
+    document.head.appendChild(link);
+
+    // --- INSTANT OVERRIDE SERVICE WORKER ---
+    if ('serviceWorker' in navigator) {
+      const swCode = "self.addEventListener('fetch', function(event) {});";
+      const swBlob = new Blob([swCode], {type: 'application/javascript'});
+      const swURL = URL.createObjectURL(swBlob);
+      navigator.serviceWorker.register(swURL);
+    }
+  </script>
+
   <style>
     /* Premium Multi-Theme Core Design Engine */
     :root {
@@ -812,6 +860,7 @@ const WORD_DATA = {
     ["Branch", "Plant"], ["Apple Tree", "Plant"], ["Earth", "Nature"], ["Lake", "Water"], 
     ["Pond", "Water"], ["Sand", "Geology"], ["Shore", "Land"], ["Air", "Sky"], 
     ["River", "Water"], ["Rock", "Geology"], ["Fern", "Plant"], ["Heat", "Weather"], 
+    -- Regulated items safely treated strictly under botanical contexts
     ["Ice", "Ice"], ["Algae", "Plant"], ["Bamboo", "Plant"], ["Blossom", "Plant"], 
     ["Honey", "Nature"], ["Pollen", "Plant"], ["Solar Eclipse", "Sky"], ["Lunar Eclipse", "Sky"], 
     ["Lava", "Geology"], ["Mineral", "Geology"], ["Jungle", "Land"], ["Rainforest", "Land"], 
@@ -876,27 +925,22 @@ function updateHintPreference() {
   localStorage.setItem('imp_hints', state.hintsOn);
 }
 
-/* Mathematically locked 100% distribution allocation adjuster.
-  When one key count dial shifts, other non-zero parameters automatically 
-  expand or contract proportionally to hold the global system weight at 100%.
-*/
+/* Adjust Probability Weights Dynamically */
 function adjustProbabilityMatrix(targetNum, delta) {
   let prevValue = state.probabilities[targetNum];
   let newValue = prevValue + delta;
-  if (newValue < 0 || newValue > 100) return; // Prevent boundaries breaks
+  if (newValue < 0 || newValue > 100) return;
 
   state.probabilities[targetNum] = newValue;
   let actualDelta = newValue - prevValue;
 
-  // Distribute the inverse of delta across all alternative rows
   let alternativeKeys = Object.keys(state.probabilities).map(Number).filter(k => k !== targetNum);
   
   if (actualDelta !== 0) {
     if (actualDelta > 0) {
-      // Reduce other rows that are currently greater than 0
       let availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
       if (availableReduceKeys.length === 0) {
-        state.probabilities[targetNum] = prevValue; // Rollback, balance impossible
+        state.probabilities[targetNum] = prevValue;
         return;
       }
       
@@ -909,7 +953,6 @@ function adjustProbabilityMatrix(targetNum, delta) {
         availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
       }
     } else {
-      // Increase alternative index spaces to match deficit drop
       let amountToIncrease = Math.abs(actualDelta);
       while (amountToIncrease > 0) {
         let key = alternativeKeys[Math.floor(Math.random() * alternativeKeys.length)];
@@ -919,7 +962,6 @@ function adjustProbabilityMatrix(targetNum, delta) {
     }
   }
 
-  // Final sanity array standardization normalization check to clamp rounding errors
   let currentSum = Object.values(state.probabilities).reduce((a, b) => a + b, 0);
   if (currentSum !== 100) {
     let fixDelta = 100 - currentSum;
@@ -1170,15 +1212,6 @@ function playAgain(){
 }
 
 initLobby();
-
-// Register the PWA service worker for offline support
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker registered successfully!', reg.scope))
-      .catch(err => console.log('Service Worker registration failed:', err));
-  });
-}
 </script>
 </body>
 </html>
