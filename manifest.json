@@ -4,15 +4,15 @@
   "description": "A party game about hidden identity and trust for friends and families.",
   "icons": [
     {
-      "src": "1780534864388.png",
+      "src": "1780541743414.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#fff1e6",
-  "theme_color": "#4a1525",
+  "background_color": "#ffffff",
+  "theme_color": "##000000",
   "display": "standalone",
   "orientation": "portrait-primary",
   "categories": ["games", "entertainment"]
