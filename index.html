@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Impostor</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#4a1525">
+
   <style>
     /* Premium Multi-Theme Core Design Engine */
     :root {
@@ -682,20 +686,18 @@ const WORD_DATA = {
     ["ChatGPT", "AI"], ["Claude", "AI"], ["Google Gemini", "AI"], ["Disney+", "Video"], 
     ["Hulu", "Video"], ["Amazon", "Shopping"], ["Ebay", "Shopping"], ["Temu", "Shopping"], 
     ["ESPN", "Sports"], ["Duolingo", "Info"], ["Gmail", "Social"], ["Canva", "Creative"], 
-    ["PayPal", "Finance"], ["Uber", "Travel"], ["DoorDash", "Food"], ["CNN", "News"], 
-    ["BBC News", "News"], ["The New York Times", "News"], ["Chrome", "Browser"], ["Safari", "Browser"], 
-    ["Google Maps", "Travel"], ["App Store", "Shopping"]
+    ["PayPal", "Finance"], ["Uber", "Travel"], ["Google Maps", "Travel"], ["App Store", "Shopping"]
   ],
   "Video Games": [
     ["Minecraft", "Pixels"], ["Roblox", "Pixels"], ["Fortnite", "Combat"], ["Grand Theft Auto", "Combat"], 
     ["Tetris", "Pixels"], ["Wii Sports", "Sports"], ["Super Smash Bros", "Combat"], ["Call of Duty", "Combat"], 
-    ["Assassin's Creed", "Combat"], ["Halo", "Combat"], ["Disney Infinity", "Adventure"], ["Skylanders", "Adventure"], 
-    ["Xbox", "Hardware"], ["Playstation", "Hardware"], ["Nintendo Switch", "Hardware"], ["Among Us", "Mobile"], 
-    ["Subway Surfers", "Mobile"], ["Brawl Stars", "Mobile"], ["Clash Royale", "Mobile"], ["Crossy Road", "Mobile"], 
-    ["Pokémon GO", "Mobile"], ["Madden", "Sports"], ["NBA 2K", "Sports"], ["FIFA", "Sports"], 
-    ["Forza Horizon", "Sports"], ["Rocket League", "Sports"], ["Mario Kart", "Sports"], ["Mortal Kombat", "Combat"], 
-    ["Candy Crush Saga", "Mobile"], ["Angry Birds", "Mobile"], ["Temple Run", "Mobile"], ["Flappy Bird", "Mobile"], 
-    ["Fruit Ninja", "Mobile"], ["Pac-Man", "Pixels"], ["Snake", "Pixels"], ["Pinball", "Retro"]
+    ["Assassin's Creed", "Combat"], ["Halo", "Combat"], ["Xbox", "Hardware"], ["Playstation", "Hardware"], 
+    ["Nintendo Switch", "Hardware"], ["Among Us", "Mobile"], ["Subway Surfers", "Mobile"], ["Brawl Stars", "Mobile"], 
+    ["Clash Royale", "Mobile"], ["Crossy Road", "Mobile"], ["Pokémon GO", "Mobile"], ["Madden", "Sports"], 
+    ["NBA 2K", "Sports"], ["FIFA", "Sports"], ["Forza Horizon", "Sports"], ["Rocket League", "Sports"], 
+    ["Mario Kart", "Sports"], ["Mortal Kombat", "Combat"], ["Candy Crush Saga", "Mobile"], ["Angry Birds", "Mobile"], 
+    ["Temple Run", "Mobile"], ["Flappy Bird", "Mobile"], ["Fruit Ninja", "Mobile"], ["Pac-Man", "Pixels"], 
+    ["Snake", "Pixels"], ["Pinball", "Retro"]
   ],
   "Foods and Drinks": [
     ["Pizza", "Cheese"], ["Burger", "Meat"], ["Sandwich", "Bread"], ["French Fries", "Potato"], 
@@ -767,8 +769,8 @@ const WORD_DATA = {
     ["Taco Bell", "Fastfood"], ["Arby's", "Fastfood"], ["Chick-fil-A", "Fastfood"], ["Culver's", "Fastfood"], 
     ["Walmart", "Retail"], ["Target", "Retail"], ["Meijer", "Retail"], ["IKEA", "Retail"], 
     ["Costco", "Retail"], ["LEGO", "Toys"], ["Visa", "Finance"], ["FedEx", "Shipping"], 
-    ["Hasbro", "Toys"], ["National Geographic", "Media"], ["Adidas", "Apparel"], ["Nike", "Apparel"], 
-    ["Under Armour", "Apparel"], ["Louis Vuitton", "Luxury"]
+    ["Hasbro", "Toys"], ["Adidas", "Apparel"], ["Nike", "Apparel"], ["Under Armour", "Apparel"], 
+    ["Louis Vuitton", "Luxury"]
   ],
   "Holidays": [
     ["Fireworks", "NewYear"], ["Confetti", "NewYear"], ["Balloons", "Birthday"], ["Party Hats", "Birthday"], 
@@ -791,7 +793,7 @@ const WORD_DATA = {
     ["Present", "Christmas"], ["Candycane", "Christmas"], ["Sleigh", "Christmas"], ["Gingerbread House", "Christmas"], 
     ["Gingerbread Man", "Christmas"], ["Coal", "Christmas"], ["Hot Chocolate", "Christmas"], ["Eggnog", "Christmas"], 
     ["Stocking", "Christmas"], ["Elf", "Christmas"], ["Menorah", "Hanukkah"], ["Countdown", "NewYear"], 
-    ["Religion", "Easter"], ["Birthday", "Birthday"], ["Birthday Cake", "Birthday"]
+    ["Birthday", "Birthday"], ["Birthday Cake", "Birthday"]
   ],
   "Nature and Earth": [
     ["Waterfall", "Water"], ["Volcano", "Geology"], ["Island", "Land"], ["Oasis", "Water"], 
@@ -815,8 +817,7 @@ const WORD_DATA = {
     ["Lava", "Geology"], ["Mineral", "Geology"], ["Jungle", "Land"], ["Rainforest", "Land"], 
     ["Desert", "Land"], ["Freshwater", "Water"], ["Saltwater", "Water"], ["Diamond", "Mineral"], 
     ["Emerald", "Mineral"], ["Gold", "Mineral"], ["Limestone", "Geology"], ["Earthquake", "Disaster"], 
-    ["Dust Devil", "Weather"], ["Flood", "Disaster"], ["Heatwave", "Weather"], ["Forest Fire", "Disaster"], 
-    ["Erosion", "Geology"]
+    ["Dust Devil", "Weather"], ["Flood", "Disaster"], ["Forest Fire", "Disaster"], ["Erosion", "Geology"]
   ]
 };
 
@@ -874,27 +875,22 @@ function updateHintPreference() {
   localStorage.setItem('imp_hints', state.hintsOn);
 }
 
-/* Mathematically locked 100% distribution allocation adjuster.
-  When one key count dial shifts, other non-zero parameters automatically 
-  expand or contract proportionally to hold the global system weight at 100%.
-*/
+/* Mathematically locked 100% distribution allocation adjuster. */
 function adjustProbabilityMatrix(targetNum, delta) {
   let prevValue = state.probabilities[targetNum];
   let newValue = prevValue + delta;
-  if (newValue < 0 || newValue > 100) return; // Prevent boundaries breaks
+  if (newValue < 0 || newValue > 100) return; 
 
   state.probabilities[targetNum] = newValue;
   let actualDelta = newValue - prevValue;
 
-  // Distribute the inverse of delta across all alternative rows
   let alternativeKeys = Object.keys(state.probabilities).map(Number).filter(k => k !== targetNum);
   
   if (actualDelta !== 0) {
     if (actualDelta > 0) {
-      // Reduce other rows that are currently greater than 0
       let availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
       if (availableReduceKeys.length === 0) {
-        state.probabilities[targetNum] = prevValue; // Rollback, balance impossible
+        state.probabilities[targetNum] = prevValue; 
         return;
       }
       
@@ -907,7 +903,6 @@ function adjustProbabilityMatrix(targetNum, delta) {
         availableReduceKeys = alternativeKeys.filter(k => state.probabilities[k] > 0);
       }
     } else {
-      // Increase alternative index spaces to match deficit drop
       let amountToIncrease = Math.abs(actualDelta);
       while (amountToIncrease > 0) {
         let key = alternativeKeys[Math.floor(Math.random() * alternativeKeys.length)];
@@ -917,7 +912,6 @@ function adjustProbabilityMatrix(targetNum, delta) {
     }
   }
 
-  // Final sanity array standardization normalization check to clamp rounding errors
   let currentSum = Object.values(state.probabilities).reduce((a, b) => a + b, 0);
   if (currentSum !== 100) {
     let fixDelta = 100 - currentSum;
