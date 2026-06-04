@@ -5,7 +5,7 @@ const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './1780518954674.png' // Matches your manifest icon perfectly
+  './1780534864388.png' // Matches your manifest icon perfectly
 ];
 
 // Install Event: Caches the game assets
