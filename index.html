@@ -215,6 +215,78 @@
       --shadow-md: 0 8px 20px rgba(69,123,157,0.08);
     }
 
+    [data-theme="ice-cream"] {
+      --bg-app: #fff0f5;
+      --bg-card: #ffffff;
+      --bg-secondary: #fef0db;
+      --border-color: #ffb7b2;
+      --text-primary: #6d4c41;
+      --text-secondary: #ff7b90;
+      --text-muted: #bcaaa4;
+      --color-primary: #ff9aa2;
+      --color-success: #b5ead7;
+      --bg-success-light: #e2f7f0;
+      --color-danger: #ff1744;
+      --bg-danger-light: #ffebee;
+      --color-accent: #e2f0cb;
+      --bg-accent-light: #f4f9eb;
+      --shadow-md: 0 10px 25px rgba(255, 154, 162, 0.15);
+    }
+
+    [data-theme="atlantis"] {
+      --bg-app: #001f3f;
+      --bg-card: #002b5c;
+      --bg-secondary: #003a75;
+      --border-color: #00d2ff;
+      --text-primary: #00d2ff;
+      --text-secondary: #7fdeff;
+      --text-muted: #005f9e;
+      --color-primary: #39ff14;
+      --color-success: #39ff14;
+      --bg-success-light: rgba(57, 255, 20, 0.12);
+      --color-danger: #ff4136;
+      --bg-danger-light: rgba(255, 65, 54, 0.15);
+      --color-accent: #ffdc00;
+      --bg-accent-light: rgba(255, 220, 0, 0.15);
+      --shadow-md: 0 8px 25px rgba(0, 210, 255, 0.25);
+    }
+
+    [data-theme="tokyo"] {
+      --bg-app: #13131a;
+      --bg-card: #1c1c26;
+      --bg-secondary: #252533;
+      --border-color: #ff007f;
+      --text-primary: #ffffff;
+      --text-secondary: #79ddff;
+      --text-muted: #535370;
+      --color-primary: #79ddff;
+      --color-success: #00ffcc;
+      --bg-success-light: rgba(0, 255, 204, 0.1);
+      --color-danger: #ff007f;
+      --bg-danger-light: rgba(255, 0, 127, 0.1);
+      --color-accent: #9d4edd;
+      --bg-accent-light: rgba(157, 78, 221, 0.12);
+      --shadow-md: 0 10px 30px rgba(255, 0, 127, 0.2);
+    }
+
+    [data-theme="forest"] {
+      --bg-app: #1b2e24;
+      --bg-card: #253f31;
+      --bg-secondary: #2f4f3e;
+      --border-color: #d4a373;
+      --text-primary: #f4f1de;
+      --text-secondary: #e07a5f;
+      --text-muted: #6b8f71;
+      --color-primary: #d4a373;
+      --color-success: #81b29a;
+      --bg-success-light: rgba(129, 178, 154, 0.15);
+      --color-danger: #e07a5f;
+      --bg-danger-light: rgba(224, 122, 95, 0.15);
+      --color-accent: #f4f1de;
+      --bg-accent-light: rgba(244, 241, 222, 0.1);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
     body {
@@ -317,6 +389,7 @@
 
     /* Autoblancing Matrix Engine List styles */
     .prob-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 0.75rem; }
+    .prob-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 0.75rem; }
     .prob-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg-secondary); padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
     .prob-label { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
     .prob-controls { display: flex; align-items: center; gap: 12px; }
@@ -403,6 +476,10 @@
             <option value="matrix">Matrix Green</option>
             <option value="amethyst">Royal Amethyst</option>
             <option value="frost">Glacier Frost</option>
+            <option value="ice-cream">Ice Cream</option>
+            <option value="atlantis">Atlantis Deep</option>
+            <option value="tokyo">Tokyo Neon</option>
+            <option value="forest">Enchanted Forest</option>
           </select>
         </div>
       </div>
